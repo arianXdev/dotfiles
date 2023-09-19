@@ -62,7 +62,7 @@ keys = [
         Key([], "n", lazy.spawn("dm-note"), desc='Store and copy notes'),
         Key([], "c", lazy.spawn("clipmenu"), desc='Clipboard'),
         Key([], "d", lazy.spawn("dm-longman"), desc='Look up words in Longman dictionary'),
-        Key([], "t", lazy.spawn("dmenu-translate"), desc='Translate text'),
+        Key([], "t", lazy.spawn("/opt/brave-bin/brave --profile-directory=Default --app-id=majiogicmcnmdhhlgmkahaleckhjbmlk"), desc='Launch Telegram Web through Brave'),
         Key([], "s", lazy.spawn("dm-websearch"), desc='Search various engines'),
     ]),
 
@@ -143,7 +143,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "l", lazy.spawn("slock"), desc="Lock the screen using slock"),
-
+    
     # Sound control
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
@@ -396,6 +396,7 @@ floating_layout = layout.Floating(
         Match(title="Tor Browser"),
         Match(title="MetaMask Notification"),
         Match(title="DevTools"),
+        Match(wm_class="persepolis"),
     ]
 )
 auto_fullscreen = True
