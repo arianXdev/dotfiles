@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -z "${DMENU_PATH}" ] ; then
+    stest -flx $PATH
+else
+    stest -flx $DMENU_PATH
+fi
