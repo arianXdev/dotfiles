@@ -62,17 +62,24 @@ keys = [
         Key([], "n", lazy.spawn("dm-note"), desc='Store and copy notes'),
         Key([], "c", lazy.spawn("clipmenu"), desc='Clipboard'),
         Key([], "d", lazy.spawn("dm-longman"), desc='Look up words in Longman dictionary'),
-        Key([], "t", lazy.spawn("/opt/brave-bin/brave --profile-directory=Default --app-id=majiogicmcnmdhhlgmkahaleckhjbmlk"), desc='Launch Telegram Web through Brave'),
+        Key([], "t", lazy.spawn("telegram-desktop"), desc='Launch Telegram Desktop'),
         Key([], "s", lazy.spawn("dm-websearch"), desc='Search various engines'),
     ]),
 
+    KeyChord([mod], "s", [
+        Key([], "t", lazy.spawn("gksu -S sudo systemctl start tor"), desc='Start tor service'),
+        Key([alt], "t", lazy.spawn("gksu -S sudo systemctl stop tor"), desc='Stop tor service'),
+        Key([], "g", lazy.spawn("galculator"), desc='Launch the calculator'),
+    ]),
+
     # Start SPECTRE DEX Development server & local Ethereum Blockchain
-    Key([mod], "s",
-        lazy.spawn("alacritty --working-directory /home/spectre/Projects/spectre-decentralized-exchange -T 'Local Ethereum Blockchain' -e npx hardhat node"),
-        lazy.spawn("alacritty --working-directory /home/spectre/Projects/spectre-decentralized-exchange -T 'SPECTRE Deployment' -e npm run deploy"),
-        lazy.spawn("alacritty --working-directory /home/spectre/Projects/spectre-decentralized-exchange -T 'VITE Server' -e npm run dev"),
-        desc='Start SPECTRE DEX needed libraries'
-    ),
+
+    #Key([mod], "s",
+    #    lazy.spawn("alacritty --working-directory /home/spectre/Projects/spectre-decentralized-exchange -T 'Local Ethereum Blockchain' -e npx hardhat node"),
+    #   lazy.spawn("alacritty --working-directory /home/spectre/Projects/spectre-decentralized-exchange -T 'SPECTRE Deployment' -e npm run deploy"),
+    #    lazy.spawn("alacritty --working-directory /home/spectre/Projects/spectre-decentralized-exchange -T 'VITE Server' -e npm run dev"),
+    #   desc='Start SPECTRE DEX needed libraries'
+    #),
     
     # Floating windows
     Key([alt], "f",
@@ -160,12 +167,12 @@ keys = [
 
 # GROUPS
 groups = []
-group_names = ["1", "2", "3", "4", "5", "6", "7", "8"]
+group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-group_labels = ["WWW", "TER", "DEV", "WEB", "MUS", "BLK", "VID", "ETC"]
+group_labels = ["WWW", "TER", "DEV", "WEB", "MUS", "BLK", "CHAT", "VID", "ETC"]
 # group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 
-group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
+group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -431,17 +438,11 @@ def start_once():
 
 @hook.subscribe.client_new
 def display_apps_in_certain_groups(window):
-    if window.name == "Persepolis Download Manager":
-        window.togroup("8")
-    elif window.name == "Visual Studio Code":
+    if window.name == "Visual Studio Code":
         window.togroup("3")
     elif window.name == "New Tab - Brave":
         window.togroup("4")
     elif window.name == "cmus":
         window.togroup("5")
     elif window.name == "Local Ethereum Blockchain":
-        window.togroup("6")
-    elif window.name == "SPECTRE Deployment":
-        window.togroup("6")
-    elif window.name == "VITE Server":
         window.togroup("6")
