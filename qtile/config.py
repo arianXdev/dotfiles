@@ -300,7 +300,7 @@ def init_widgets_list():
                 ),
                 widget.Memory(
                     foreground = colors[9],
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
                     fmt = 'Mem: {}',
                     padding = 6,
                 ),
