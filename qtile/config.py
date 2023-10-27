@@ -291,9 +291,12 @@ def init_widgets_list():
                     padding = 10,
                     foreground = colors[0],
                 ),
-                widget.PulseVolume(
+                widget.Volume(
                     foreground = colors[7],
                     padding = 5,
+                    volume_app = "pamixer",
+                    get_volume_command = "pamixer --get-volume-human",
+                    check_mute_command = "pamixer --get-mute",
                 ),
                 widget.Memory(
                     foreground = colors[9],
@@ -396,7 +399,8 @@ floating_layout = layout.Floating(
         Match(title="Tor Browser"),
         Match(title="MetaMask Notification"),
         Match(title="DevTools"),
-        Match(wm_class="persepolis"),
+        Match(wm_class="xdm-app"),
+        Match(wm_class="galculator"),
     ]
 )
 auto_fullscreen = True
