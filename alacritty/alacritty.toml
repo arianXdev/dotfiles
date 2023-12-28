@@ -1,0 +1,27 @@
+import = ["/home/spectre/.config/alacritty/themes/gotham.toml"]
+
+[cursor.style]
+shape = "Beam"
+
+[font.bold]
+family = "Operator Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Operator Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Operator Mono"
+style = "Italic"
+
+[font.normal]
+family = "Operator Mono"
+
+[window.dimensions]
+columns = 140
+lines = 27
+
+[window.padding]
+x = 6
+y = 6
