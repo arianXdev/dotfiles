@@ -64,12 +64,14 @@ keys = [
         Key([], "d", lazy.spawn("dm-longman"), desc='Look up words in Longman dictionary'),
         Key([], "t", lazy.spawn("telegram-desktop"), desc='Launch Telegram Desktop'),
         Key([], "s", lazy.spawn("dm-websearch"), desc='Search various engines'),
+        Key([], "a", lazy.spawn("dm-pipewire-out-switcher"), desc='Switch default output for pipewire'),
     ]),
 
     KeyChord([mod], "s", [
         Key([], "t", lazy.spawn("gksu -S sudo systemctl start tor"), desc='Start tor service'),
         Key([alt], "t", lazy.spawn("gksu -S sudo systemctl stop tor"), desc='Stop tor service'),
         Key([], "g", lazy.spawn("galculator"), desc='Launch the calculator'),
+        Key([], "b", lazy.spawn(myTerm + " -e btop"), desc='Lanuch btop as a bsystem monitor'),
     ]),
 
     # Start SPECTRE DEX Development server & local Ethereum Blockchain
@@ -408,6 +410,7 @@ floating_layout = layout.Floating(
         Match(title="DevTools"),
         Match(wm_class="xdm-app"),
         Match(wm_class="galculator"),
+        Match(title="terminal-floating")
     ]
 )
 auto_fullscreen = True

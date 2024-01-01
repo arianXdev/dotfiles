@@ -2,7 +2,13 @@
 lxsession --de="ARH" &
 picom --daemon &
 alacritty -T cmus -e cmus &
-conky -c .conky-right & conky -c .conky-left & conky -c .conky-second-monitor & sleep 1s &
+conky -c .conky-right & conky -c .conky-left &
+
+if xrandr --listmonitors | grep "Monitors: 2"; then
+	conky -c .conky-second-monitor &
+fi
+
+sleep 1s &
 nitrogen --restore & 
 clipmenud &
 dunst &
