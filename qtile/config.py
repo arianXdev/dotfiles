@@ -39,6 +39,23 @@ mod = "mod4"
 alt = "mod1"
 terminal = guess_terminal()
 
+# A function for hide/show all the windows in a group
+@lazy.function
+def minimize_all(qtile):
+    for win in qtile.current_group.windows:
+        if hasattr(win, "toggle_minimize"):
+            win.toggle_minimize()
+
+# A function for toggling between MAX and MONADTALL layouts
+@lazy.function
+def maximize_by_switching_layout(qtile):
+    current_layout_name = qtile.current_group.layout.name
+    if current_layout_name == 'monadtall':
+        qtile.current_group.layout = 'max'
+    elif current_layout_name == 'max':
+        qtile.current_group.layout = 'monadtall'
+
+           
 # KEYS
 keys = [
     Key([mod], "b",
@@ -74,15 +91,6 @@ keys = [
         Key([], "b", lazy.spawn(myTerm + " -e btop"), desc='Lanuch btop as a bsystem monitor'),
     ]),
 
-    # Start SPECTRE DEX Development server & local Ethereum Blockchain
-
-    #Key([mod], "s",
-    #    lazy.spawn("alacritty --working-directory /home/spectre/Projects/spectre-decentralized-exchange -T 'Local Ethereum Blockchain' -e npx hardhat node"),
-    #   lazy.spawn("alacritty --working-directory /home/spectre/Projects/spectre-decentralized-exchange -T 'SPECTRE Deployment' -e npm run deploy"),
-    #    lazy.spawn("alacritty --working-directory /home/spectre/Projects/spectre-decentralized-exchange -T 'VITE Server' -e npm run dev"),
-    #   desc='Start SPECTRE DEX needed libraries'
-    #),
-    
     # Floating windows
     Key([alt], "f",
         lazy.window.toggle_floating(),
@@ -132,10 +140,14 @@ keys = [
              desc='Kill focused window'
     ),
 
-    Key([mod], "f",
-            lazy.window.toggle_fullscreen(),
-            desc='Put the focused window to/from fullscreen mode'
-    ),
+    # Key([mod], "f",
+    #         lazy.window.toggle_fullscreen(),
+    #         desc='Put the focused window to/from fullscreen mode'
+    # ),
+
+    Key([mod], "f", maximize_by_switching_layout(), lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
+
+    Key([mod, "shift"], "m", minimize_all(), desc="Toggle hide/show all windows on current group"),
 
     ### Switch focus to specific monitor (out of three)
     Key([mod], "w",
@@ -169,12 +181,12 @@ keys = [
 
 # GROUPS
 groups = []
-group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 
-group_labels = ["WWW", "TER", "DEV", "WEB", "MUS", "BLK", "CHAT", "VID", "ETC"]
+group_labels = ["WWW", "TER", "DEV", "WEB", "MUS", "BLK", "CHAT", "VID", "ETC",]
 # group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 
-group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
+group_layouts = ["monadtall", "monadtall", "tile", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -223,11 +235,20 @@ layouts = [
     #layout.VerticalTile(**layout_theme),
     # layout.Stack(num_stacks=2),
     #layout.Zoomy(**layout_theme),
-    
+    layout.Tile(
+        shift_windows=True,
+        border_width = 0,
+        margin = 0,
+        ratio = 0.335,
+        ),
     layout.Matrix(**layout_theme),
+    # layout.Max(
+    #      border_width = 0,
+    #      margin = 0,
+    #      ),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
-    layout.RatioTile(**layout_theme),
+    # layout.RatioTile(**layout_theme),
     layout.Floating(**layout_theme)
 ]
 
@@ -257,31 +278,33 @@ extension_defaults = widget_defaults.copy()
 
 def init_widgets_list():
     widgets_list = [
-         widget.Sep(
-                    linewidth = 0,
-                    padding = 6,
-                    foreground = colors[2],
-                    # background = colors[0]
-                ),
+            widget.Spacer(length = 6),
             widget.GroupBox(
-                       margin_y = 3,
-                       margin_x = 0,
-                       padding_y = 5,
-                       padding_x = 3,
-                       borderwidth = 3,
-                       active = colors[2],
-                       block_highlight_text_color = colors[3],
-                       inactive = colors[6],
-                       rounded = False,
-                       highlight_color = colors[1],
-                       highlight_method = "line",
-                       this_current_screen_border = colors[3],
-                       this_screen_border = colors[1],
-                       other_current_screen_border = colors[1],
-                       other_screen_border = colors[0],
+                    margin_y = 3,
+                    margin_x = 1,
+                    padding_y = 5,
+                    padding_x = 3,
+                    borderwidth = 3,
+                    active = colors[2],
+                    block_highlight_text_color = colors[3],
+                    inactive = colors[6],
+                    rounded = False,
+                    highlight_color = colors[1],
+                    highlight_method = "line",
+                    this_current_screen_border = colors[3],
+                    this_screen_border = colors[1],
+                    other_current_screen_border = colors[1],
+                    other_screen_border = colors[0],
                        disable_drag = True,
                     #    foreground = colors[2],
                     #    background = colors[0]
+                ),
+                widget.TextBox(
+                    text = '|',
+                    font = "Ubuntu Mono",
+                    foreground = colors[1],
+                    padding = 2,
+                    fontsize = 14
                 ),
                 widget.Prompt(
                     prompt="command: ",
@@ -289,17 +312,12 @@ def init_widgets_list():
                     cursor = True,
                     padding = 10,
                 ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 5,
+                widget.Spacer(length = 5),
+                widget.WindowName(
+                    max_chars = 40
                 ),
-                widget.WindowName(),
                 widget.Cmus(noplay_color='eee82d'),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 10,
-                    foreground = colors[0],
-                ),
+                widget.Spacer(length = 4),
                 widget.Volume(
                     foreground = colors[7],
                     padding = 5,
@@ -313,21 +331,13 @@ def init_widgets_list():
                     fmt = 'Mem: {}',
                     padding = 6,
                 ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 3,
-                    foreground = colors[0],
-                ),
+                widget.Spacer(length = 4),
                 widget.ThermalSensor(
                     foreground = colors[4],
                     threshold = 90,
                     padding = 2,
                 ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 6,
-                    foreground = colors[0],
-                ),
+                widget.Spacer(length = 8),
                 widget.KeyboardLayout(
                     configured_keyboards = ['us', 'ir'],
                     display_map = { 'ir': 'fa' },
@@ -335,19 +345,11 @@ def init_widgets_list():
                     padding = 5,
                 ),
                 widget.CurrentLayout(padding=6),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 6,
-                    foreground = colors[2],
-                ),
+                widget.Spacer(length = 6),
                 widget.Systray(
                     padding = 3
                 ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 6,
-                    foreground = colors[2],
-                ),
+                widget.Spacer(length = 6),
                 widget.Clock(
                     foreground = colors[6],
                     format = "%A, %B %d | %H:%M ",
@@ -355,9 +357,6 @@ def init_widgets_list():
         ]
     return widgets_list
 
-# Monitor 1 will display ALL widgets in widgets_list. It is important that this
-# is the only monitor that displays all widgets because the systray widget will
-# crash if you try to run multiple instances of it.
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
     return widgets_screen1 
@@ -365,7 +364,7 @@ def init_widgets_screen1():
 # All other monitors' bars will display everything but widgets 22 (systray) and 23 (spacer).
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    del widgets_screen2[15:17], widgets_screen2[5:8]
+    del widgets_screen2[15:17]
     return widgets_screen2
 
 # For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
@@ -394,8 +393,8 @@ follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
-    border_focus=colors[8],
-    border_width=2,
+    # border_focus=colors[8],
+    border_width=0,
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
@@ -406,11 +405,12 @@ floating_layout = layout.Floating(
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(title="Tor Browser"),
-        Match(title="MetaMask Notification"),
         Match(title="DevTools"),
         Match(wm_class="xdm-app"),
         Match(wm_class="galculator"),
-        Match(title="terminal-floating")
+        Match(wm_class="windscribe"),
+        Match(title="terminal-floating"),
+        Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn") # MetaMask Notification
     ]
 )
 auto_fullscreen = True
