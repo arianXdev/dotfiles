@@ -23,7 +23,11 @@ main() {
     # Searching the chosen engine.
     query=$(${MENU} 'Enter word to lookup:')
 
-    query="$(echo -n "${query}" | jq -s -R -r @uri)"
+    query="$(echo -n "${query}")"
+
+    if ([ -z "$query" ]); then
+	    query=$(xsel)
+    fi
     # Display search results in web browser
     # shellcheck disable=SC2154
     ${DMBROWSER} "${url}${query}"
