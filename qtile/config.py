@@ -182,11 +182,8 @@ keys = [
 # GROUPS
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
-
 group_labels = ["WWW", "TER", "DEV", "WEB", "MUS", "BLK", "CHAT", "VID", "ETC",]
-# group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
-
-group_layouts = ["monadtall", "monadtall", "tile", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
+group_layouts = ["monadtall", "monadtall", "tile", "tile", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -326,9 +323,9 @@ def init_widgets_list():
                     check_mute_command = "pamixer --get-mute",
                 ),
                 widget.Memory(
-                    foreground = colors[9],
+                    foreground = colors[8],
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
-                    fmt = 'Mem: {}',
+                    fmt = 'Mem:{}',
                     padding = 6,
                 ),
                 widget.Spacer(length = 4),
@@ -347,7 +344,7 @@ def init_widgets_list():
                 widget.CurrentLayout(padding=6),
                 widget.Spacer(length = 6),
                 widget.Systray(
-                    padding = 3
+                    padding = 3,
                 ),
                 widget.Spacer(length = 6),
                 widget.Clock(
@@ -447,5 +444,3 @@ def display_apps_in_certain_groups(window):
         window.togroup("4")
     elif window.name == "cmus":
         window.togroup("5")
-    elif window.name == "Local Ethereum Blockchain":
-        window.togroup("6")

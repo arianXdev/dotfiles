@@ -10,9 +10,9 @@ fi
 
 sleep 1s &
 nitrogen --restore & 
+dbus-update-activation-environment --all &
 clipmenud &
 dunst &
-
-
+gnome-keyring-daemon --start --components=secrets &
 
 #alacritty -T "terminal-floating" -o "window.dimensions.columns=40" -o "window.dimensions.lines=14" -o "window.position.y=400" -e COMMAND &
