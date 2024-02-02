@@ -30,14 +30,15 @@ from libqtile import bar, extension, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 
-from libqtile.utils import guess_terminal
+from qtile_extras import widget
+from libqtile.utils import send_notification
+import qtile_extras.hook
 
 # GLOBAL VARIABLES
-myTerm = "alacritty"
-myBrowser = "brave"
 mod = "mod4"
 alt = "mod1"
-terminal = guess_terminal()
+myTerm = "alacritty"
+myBrowser = "brave"
 
 # A function for hide/show all the windows in a group
 @lazy.function
@@ -55,7 +56,7 @@ def maximize_by_switching_layout(qtile):
     elif current_layout_name == 'max':
         qtile.current_group.layout = 'monadtall'
 
-           
+
 # KEYS
 keys = [
     Key([mod], "b",
@@ -87,7 +88,7 @@ keys = [
     KeyChord([mod], "s", [
         Key([], "t", lazy.spawn("gksu -S sudo systemctl start tor"), desc='Start tor service'),
         Key([alt], "t", lazy.spawn("gksu -S sudo systemctl stop tor"), desc='Stop tor service'),
-        Key([], "g", lazy.spawn("galculator"), desc='Launch the calculator'),
+        Key([], "q", lazy.spawn("qalculate-gtk"), desc='Launch the calculator'),
         Key([], "b", lazy.spawn(myTerm + " -e btop"), desc='Lanuch btop as a bsystem monitor'),
     ]),
 
@@ -131,7 +132,7 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
 
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "Return", lazy.spawn(myTerm), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
 
@@ -223,29 +224,21 @@ layout_theme = {
 }
 
 layouts = [
-    #layout.MonadWide(**layout_theme),
-    #layout.Bsp(**layout_theme),
-    #layout.Stack(stacks=2, **layout_theme),
-    #layout.Columns(**layout_theme),
-    #layout.RatioTile(**layout_theme),
-    #layout.Tile(shift_windows=True, **layout_theme),
-    #layout.VerticalTile(**layout_theme),
     # layout.Stack(num_stacks=2),
-    #layout.Zoomy(**layout_theme),
+    # layout.Zoomy(**layout_theme),
+    # layout.Matrix(**layout_theme),
     layout.Tile(
         shift_windows=True,
         border_width = 0,
         margin = 0,
         ratio = 0.335,
-        ),
-    layout.Matrix(**layout_theme),
+    ),
     # layout.Max(
     #      border_width = 0,
     #      margin = 0,
     #      ),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
-    # layout.RatioTile(**layout_theme),
     layout.Floating(**layout_theme)
 ]
 
@@ -343,6 +336,10 @@ def init_widgets_list():
                 ),
                 widget.CurrentLayout(padding=6),
                 widget.Spacer(length = 6),
+                widget.GithubNotifications(
+                    icon_size = 18,
+                    token_file = "~/.config/gh/github.token"
+                ),
                 widget.Systray(
                     padding = 3,
                 ),
@@ -358,10 +355,10 @@ def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
     return widgets_screen1 
 
-# All other monitors' bars will display everything but widgets 22 (systray) and 23 (spacer).
+
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    del widgets_screen2[15:17]
+    del widgets_screen2[16:19]
     return widgets_screen2
 
 # For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
@@ -396,17 +393,22 @@ floating_layout = layout.Floating(
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="dialog"),         # dialog boxes
+        Match(wm_class="download"),       # downloads
+        Match(wm_class="error"),          # error msgs
+        Match(wm_class="notification"),   # notifications
+        Match(wm_class="file_progress"),  # file progress boxes
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
         Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(wm_class="toolbar"),        # toolbars
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(title="Tor Browser"),
         Match(title="DevTools"),
+        Match(title='Qalculate!'),        # qalculate-gtk
         Match(wm_class="xdm-app"),
-        Match(wm_class="galculator"),
         Match(wm_class="windscribe"),
-        Match(title="terminal-floating"),
         Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn") # MetaMask Notification
     ]
 )
@@ -444,3 +446,8 @@ def display_apps_in_certain_groups(window):
         window.togroup("4")
     elif window.name == "cmus":
         window.togroup("5")
+
+
+@qtile_extras.hook.subscribe.up_battery_low
+def battery_low(battery_name):
+    send_notification(battery_name, "Battery is running low.")
