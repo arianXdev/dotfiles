@@ -442,10 +442,12 @@ def start_once():
 def display_apps_in_certain_groups(window):
     if window.name == "Visual Studio Code":
         window.togroup("3")
-    elif window.name == "New Tab - Brave":
+    elif window.name == "Untitled - Brave":
         window.togroup("4")
     elif window.name == "cmus":
         window.togroup("5")
+    elif window.name == "Skype":
+        window.togroup("7")
 
 
 @qtile_extras.hook.subscribe.up_battery_low
