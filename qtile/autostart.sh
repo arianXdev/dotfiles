@@ -4,7 +4,7 @@ dbus-update-activation-environment --all &
 gnome-keyring-daemon --start --components=secrets &
 picom --daemon &
 clipmenud &
-dunst &
+#dunst &
 sleep 1 &
 nitrogen --restore &
 conky -c .conky-right & conky -c .conky-left &

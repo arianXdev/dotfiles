@@ -71,7 +71,6 @@ keys = [
 
     Key([mod], 'd', lazy.spawn("dmenu_run"), desc="Launch dmenu"),
     
-    # Dmenu scripts launched using the key chord SUPER+p followed by 'key'
     KeyChord([mod], "p", [
         Key([], "h", lazy.spawn("dm-hub"), desc='List all dmscripts'),
         Key([], "i", lazy.spawn("dm-maim"), desc='Take a screenshot'),
@@ -83,6 +82,7 @@ keys = [
         Key([], "t", lazy.spawn("telegram-desktop"), desc='Launch Telegram Desktop'),
         Key([], "s", lazy.spawn("dm-websearch"), desc='Search various engines'),
         Key([], "a", lazy.spawn("dm-pipewire-out-switcher"), desc='Switch default output for pipewire'),
+        Key([], "p", lazy.spawn("pavucontrol"), desc='Launch pavucontrol'),
     ]),
 
     KeyChord([mod], "s", [
@@ -163,7 +163,8 @@ keys = [
 
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "u", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Launch rofi drun"),
     Key([mod], "l", lazy.spawn("slock"), desc="Lock the screen using slock"),
     
     # Sound control
@@ -184,7 +185,7 @@ keys = [
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 group_labels = ["WWW", "TER", "DEV", "WEB", "MUS", "BLK", "CHAT", "VID", "ETC",]
-group_layouts = ["monadtall", "monadtall", "tile", "tile", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
+group_layouts = ["monadtall", "tile", "tile", "tile", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -336,10 +337,6 @@ def init_widgets_list():
                 ),
                 widget.CurrentLayout(padding=6),
                 widget.Spacer(length = 6),
-                widget.GithubNotifications(
-                    icon_size = 18,
-                    token_file = "~/.config/gh/github.token"
-                ),
                 widget.Systray(
                     padding = 3,
                 ),
@@ -358,7 +355,7 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    del widgets_screen2[16:19]
+    del widgets_screen2[16:18]
     return widgets_screen2
 
 # For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
@@ -409,6 +406,7 @@ floating_layout = layout.Floating(
         Match(title='Qalculate!'),        # qalculate-gtk
         Match(wm_class="xdm-app"),
         Match(wm_class="windscribe"),
+        Match(wm_class="pavucontrol"),
         Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn") # MetaMask Notification
     ]
 )
