@@ -166,6 +166,7 @@ keys = [
     Key([mod], "u", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Launch rofi drun"),
     Key([mod], "l", lazy.spawn("slock"), desc="Lock the screen using slock"),
+    Key([mod], "q", lazy.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), lazy.widget["genpollcommand"].force_update(), desc="Mute my microphone"),
     
     # Sound control
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
@@ -185,7 +186,7 @@ keys = [
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 group_labels = ["WWW", "TER", "DEV", "WEB", "MUS", "BLK", "CHAT", "VID", "ETC",]
-group_layouts = ["monadtall", "tile", "tile", "tile", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
+group_layouts = ["monadtall", "tile", "tile", "tile", "monadtall", "monadtall", "tile", "monadtall", "monadtall"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -309,6 +310,11 @@ def init_widgets_list():
                 ),
                 widget.Cmus(noplay_color='eee82d'),
                 widget.Spacer(length = 4),
+                widget.GenPollCommand(
+                    cmd = "check-microphone",
+                    fmt='<i>{}</i>',
+                    foreground = "#e30526",
+                ),
                 widget.Volume(
                     foreground = colors[7],
                     padding = 5,
