@@ -308,7 +308,7 @@ def init_widgets_list():
                 widget.WindowName(
                     max_chars = 40
                 ),
-                widget.Cmus(noplay_color='eee82d'),
+                widget.Cmus(noplay_color='eee82d', font="Anta Regular", fontsize=14.7),
                 widget.Spacer(length = 4),
                 widget.GenPollCommand(
                     cmd = "check-microphone",
@@ -367,7 +367,7 @@ def init_widgets_screen2():
 # For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
 # For ex: Screen(top=bar.Bar(widgets=init_widgets_screen2(), background="#00000000", size=24)),
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26)),
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=27)),
             Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26))]
 
 if __name__ in ["config", "__main__"]:
@@ -413,6 +413,7 @@ floating_layout = layout.Floating(
         Match(wm_class="xdm-app"),
         Match(wm_class="windscribe"),
         Match(wm_class="pavucontrol"),
+        Match(wm_class="skype"),
         Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn") # MetaMask Notification
     ]
 )
