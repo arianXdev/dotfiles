@@ -166,7 +166,9 @@ keys = [
     Key([mod], "u", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Launch rofi drun"),
     Key([mod], "l", lazy.spawn("slock"), desc="Lock the screen using slock"),
-    Key([mod], "q", lazy.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), lazy.widget["genpollcommand"].force_update(), desc="Mute my microphone"),
+    Key([], "f1", lazy.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), lazy.widget["genpollcommand"].force_update(), desc="Handle the microphone"),
+    Key([], "f4", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 a2dp_sink"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the headset mode"),
+    Key([], "f5", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 handsfree_head_unit"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the microphone mode"),
     
     # Sound control
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
