@@ -64,10 +64,10 @@ keys = [
         desc='Brave Browser'
     ),
 
-    # Key([mod], "t",
-    #     lazy.spawn("pcmanfm"),
-    #     desc='Graphical File Manager'
-    # ),
+    Key([alt], "t",
+         lazy.spawn("pcmanfm"),
+         desc='Graphical File Manager'
+    ),
 
     Key([mod], 'd', lazy.spawn("dmenu_run"), desc="Launch dmenu"),
     
@@ -190,7 +190,7 @@ keys = [
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 group_labels = ["WWW", "TER", "DEV", "WEB", "MUS", "BLK", "CHAT", "VID", "ETC",]
-group_layouts = ["monadtall", "tile", "tile", "tile", "monadtall", "monadtall", "tile", "monadtall", "monadtall"]
+group_layouts = ["monadtall", "tile", "tile", "tile", "monadtall", "monadtall", "floating", "max", "max"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -421,6 +421,8 @@ floating_layout = layout.Floating(
         Match(wm_class="anydesk"),
         Match(wm_class="lxappearance"),
         Match(wm_class="skype"),
+        Match(wm_class="feh"),
+        Match(wm_class="viewnior"),
         Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn") # MetaMask Notification
     ]
 )
