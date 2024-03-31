@@ -27,7 +27,7 @@
 import os
 import subprocess
 from libqtile import bar, extension, hook, layout, qtile, widget
-from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
+from libqtile.config import Click, Drag, Group, ScratchPad, DropDown, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 
 from qtile_extras import widget
@@ -64,10 +64,10 @@ keys = [
         desc='Brave Browser'
     ),
 
-    Key([mod], "t",
-        lazy.spawn("pcmanfm"),
-        desc='Graphical File Manager'
-    ),
+    # Key([mod], "t",
+    #     lazy.spawn("pcmanfm"),
+    #     desc='Graphical File Manager'
+    # ),
 
     Key([mod], 'd', lazy.spawn("dmenu_run"), desc="Launch dmenu"),
     
@@ -79,10 +79,10 @@ keys = [
         Key([], "n", lazy.spawn("dm-note"), desc='Store and copy notes'),
         Key([], "c", lazy.spawn("clipmenu"), desc='Clipboard'),
         Key([], "d", lazy.spawn("dm-longman"), desc='Look up words in Longman dictionary'),
-        Key([], "t", lazy.spawn("telegram-desktop"), desc='Launch Telegram Desktop'),
         Key([], "s", lazy.spawn("dm-websearch"), desc='Search various engines'),
         Key([], "a", lazy.spawn("dm-pipewire-out-switcher"), desc='Switch default output for pipewire'),
-        Key([], "p", lazy.spawn("pavucontrol"), desc='Launch pavucontrol'),
+        Key([], 'p', lazy.group['scratchpad'].dropdown_toggle('volume')),
+        Key([], 't', lazy.group['scratchpad'].dropdown_toggle('term')),
     ]),
 
     KeyChord([mod], "s", [
@@ -182,6 +182,8 @@ keys = [
     Key([mod],"i",
         lazy.spawn("setxkbmap ir"),
         desc= "Change to Persian layout"),
+
+    Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('ranger')),
 ]
 
 # GROUPS
@@ -218,6 +220,12 @@ for i in groups:
         ]
     )
 
+# SCRATCHPADS
+groups.append(ScratchPad("scratchpad", [
+    DropDown("term", "alacritty --class=scratch", width=0.8, height=0.5, x=0.1, y=0.1, opacity=0.98),
+    DropDown("ranger", "alacritty --class=ranger -e ranger", width=0.8, height=0.5, x=0.1, y=0.1, opacity=1, on_focus_lost_hide=False),
+    DropDown("volume", "pavucontrol", width=0.6, height=0.5, x=0.2, y=0.2, opacity=1, on_focus_lost_hide=False),
+]))
 
 # LAYOUTS
 layout_theme = {
@@ -228,21 +236,17 @@ layout_theme = {
 }
 
 layouts = [
-    # layout.Stack(num_stacks=2),
-    # layout.Zoomy(**layout_theme),
-    # layout.Matrix(**layout_theme),
     layout.Tile(
         shift_windows=True,
         border_width = 0,
         margin = 0,
         ratio = 0.335,
     ),
-    # layout.Max(
-    #      border_width = 0,
-    #      margin = 0,
-    #      ),
     layout.MonadTall(**layout_theme),
-    layout.Max(**layout_theme),
+    layout.Max(
+        border_width = 0,
+        margin = 2,
+    ),
     layout.Floating(**layout_theme)
 ]
 
@@ -310,7 +314,7 @@ def init_widgets_list():
                 widget.WindowName(
                     max_chars = 40
                 ),
-                widget.Cmus(noplay_color='eee82d', font="Anta Regular", fontsize=14.7),
+                widget.Cmus(noplay_color='eee82d', font="Anta Regular", fontsize=13),
                 widget.Spacer(length = 4),
                 widget.GenPollCommand(
                     cmd = "check-microphone",
@@ -360,7 +364,6 @@ def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
     return widgets_screen1 
 
-
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
     del widgets_screen2[16:18]
@@ -369,8 +372,8 @@ def init_widgets_screen2():
 # For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
 # For ex: Screen(top=bar.Bar(widgets=init_widgets_screen2(), background="#00000000", size=24)),
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=27)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=27, margin=1)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, margin=1))]
 
 if __name__ in ["config", "__main__"]:
     screens = init_screens()
@@ -415,6 +418,8 @@ floating_layout = layout.Floating(
         Match(wm_class="xdm-app"),
         Match(wm_class="windscribe"),
         Match(wm_class="pavucontrol"),
+        Match(wm_class="anydesk"),
+        Match(wm_class="lxappearance"),
         Match(wm_class="skype"),
         Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn") # MetaMask Notification
     ]
@@ -455,8 +460,3 @@ def display_apps_in_certain_groups(window):
         window.togroup("5")
     elif window.name == "Skype":
         window.togroup("7")
-
-
-@qtile_extras.hook.subscribe.up_battery_low
-def battery_low(battery_name):
-    send_notification(battery_name, "Battery is running low.")
