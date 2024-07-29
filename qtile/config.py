@@ -78,6 +78,7 @@ keys = [
         Key([], "w", lazy.spawn("dm-wifi"), desc='Connect to wifi'),
         Key([], "n", lazy.spawn("dm-note"), desc='Store and copy notes'),
         Key([], "c", lazy.spawn("clipmenu"), desc='Clipboard'),
+        Key([alt], "c", lazy.spawn("clipdel -d '.*'"), desc='Delete all of the clipboard entries'),
         Key([], "d", lazy.spawn("dm-longman"), desc='Look up words in Longman dictionary'),
         Key([], "s", lazy.spawn("dm-websearch"), desc='Search various engines'),
         Key([], "a", lazy.spawn("dm-pipewire-out-switcher"), desc='Switch default output for pipewire'),
@@ -189,7 +190,7 @@ keys = [
 # GROUPS
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
-group_labels = ["WWW", "TER", "DEV", "WEB", "MUS", "BLK", "CHAT", "VID", "ETC",]
+group_labels = ["$$$", ">--", "</>", "&&&", "^~^", "***", "@AT", "VID", "BACKYARD",]
 group_layouts = ["monadtall", "tile", "tile", "tile", "monadtall", "monadtall", "floating", "max", "max"]
 
 for i in range(len(group_names)):
@@ -222,7 +223,7 @@ for i in groups:
 
 # SCRATCHPADS
 groups.append(ScratchPad("scratchpad", [
-    DropDown("term", "alacritty --class=scratch", width=0.8, height=0.5, x=0.1, y=0.1, opacity=0.98),
+    DropDown("term", "alacritty --class=scratch", width=0.8, height=0.5, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
     DropDown("ranger", "alacritty --class=ranger -e ranger", width=0.8, height=0.5, x=0.1, y=0.1, opacity=1, on_focus_lost_hide=False),
     DropDown("volume", "pavucontrol", width=0.6, height=0.5, x=0.2, y=0.2, opacity=1, on_focus_lost_hide=False),
 ]))
@@ -277,6 +278,16 @@ extension_defaults = widget_defaults.copy()
 def init_widgets_list():
     widgets_list = [
             widget.Spacer(length = 6),
+            widget.CurrentScreen(
+                # active_color = colors[6],
+                # active_text = "[A]",
+                fmt="[{}]"
+            ),
+            widget.Spacer(length = 6),
+            # widget.TextBox(
+            #       text = '7M',
+            #       foreground=colors[3],
+            #   ),
             widget.GroupBox(
                     margin_y = 3,
                     margin_x = 1,
@@ -314,7 +325,7 @@ def init_widgets_list():
                 widget.WindowName(
                     max_chars = 40
                 ),
-                widget.Cmus(noplay_color='eee82d', font="Anta Regular", fontsize=13),
+                widget.Cmus(noplay_color='#ff0011', font="Anta Regular", fontsize=13, format='{play_icon}{artist} / {album} - {title}'),
                 widget.Spacer(length = 4),
                 widget.GenPollCommand(
                     cmd = "check-microphone",
@@ -322,8 +333,8 @@ def init_widgets_list():
                     foreground = "#e30526",
                 ),
                 widget.Volume(
-                    foreground = colors[7],
-                    padding = 5,
+                    foreground = colors[2],
+                    padding = 1,
                     volume_app = "pamixer",
                     get_volume_command = "pamixer --get-volume-human",
                     check_mute_command = "pamixer --get-mute",
@@ -331,31 +342,34 @@ def init_widgets_list():
                 widget.Memory(
                     foreground = colors[8],
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
-                    fmt = 'Mem:{}',
+                    fmt = '{}',
+                    format="{MemUsed: .0f} out of{MemTotal: .0f}",
                     padding = 6,
                 ),
-                widget.Spacer(length = 4),
-                widget.ThermalSensor(
-                    foreground = colors[4],
-                    threshold = 90,
-                    padding = 2,
-                ),
-                widget.Spacer(length = 8),
+                widget.Spacer(length = 2),
                 widget.KeyboardLayout(
                     configured_keyboards = ['us', 'ir'],
-                    display_map = { 'ir': 'fa' },
+                    display_map = { 'ir': 'Persian', "us": "^ U.S." },
+                    # display_map = { 'ir': 'Persian', "us": "^ United States : SEARCHING FILES..." },
                     foreground = colors[2],
                     padding = 5,
                 ),
                 widget.CurrentLayout(padding=6),
                 widget.Spacer(length = 6),
-                widget.Systray(
-                    padding = 3,
-                ),
-                widget.Spacer(length = 6),
                 widget.Clock(
                     foreground = colors[6],
-                    format = "%A, %B %d | %H:%M ",
+                    format = "%H:%M %a, %B %d ",
+                ),
+                widget.Systray(  
+                    padding = 3,
+                ),
+                widget.Spacer(length = 7),
+                widget.CPUGraph(
+                    border_width=0,
+                    start_pos='bottom',
+                    fill_color="#46d9ff",
+                    graph_color="#46d9ff",
+                    padding = 2,
                 ),
         ]
     return widgets_list
@@ -416,6 +430,7 @@ floating_layout = layout.Floating(
         Match(title="DevTools"),
         Match(title='Qalculate!'),        # qalculate-gtk
         Match(wm_class="xdm-app"),
+        Match(wm_class="windscribe"),
         Match(wm_class="Windscribe"),
         Match(wm_class="pavucontrol"),
         Match(wm_class="anydesk"),
@@ -423,6 +438,7 @@ floating_layout = layout.Floating(
         Match(wm_class="skype"),
         Match(wm_class="feh"),
         Match(wm_class="viewnior"),
+        Match(wm_class="ranger-file-picker"),
         Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn") # MetaMask Notification
     ]
 )

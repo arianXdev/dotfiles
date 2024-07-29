@@ -5,8 +5,8 @@ gnome-keyring-daemon --start --components=secrets &
 picom --daemon &
 clipmenud &
 sleep 1 &
-nitrogen --restore &
-conky -c .conky-right & conky -c .conky-left &
+nitrogen --restore & 
+conky -c .conky-right & conky -c .conky-left & conky -c .conky-center &
 sleep 1 &
 
 if xrandr --listmonitors | grep "Monitors: 2"; then
