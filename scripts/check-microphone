@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Get the default source
+DEFAULT_SOURCE=$(pactl get-default-source)
+
+# Check if we got a result
+if [ -z "$DEFAULT_SOURCE" ]; then
+    exit 0
+fi
+
+# Check if the default source is related to HFP (microphone) mode
+# You might need to adjust the identifier based on your setup
+if echo "$DEFAULT_SOURCE" | grep -q "bluez_source"; then
+    # Get the mute status of the default source
+    MUTE_STATUS=$(pactl get-source-mute "$DEFAULT_SOURCE")
+    
+    # Check if mute status is available
+    if [ -z "$MUTE_STATUS" ]; then
+        exit 0
+    fi
+    
+    # Determine if the microphone is muted or not
+    if echo "$MUTE_STATUS" | grep -q "Mute: yes"; then
+        echo "MIC: OFF"
+    else
+        echo "MIC: ON"
+    fi
+fi
+
