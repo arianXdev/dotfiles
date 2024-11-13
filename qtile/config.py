@@ -90,7 +90,7 @@ keys = [
         Key([], "t", lazy.spawn("gksu -S sudo systemctl start tor"), desc='Start tor service'),
         Key([alt], "t", lazy.spawn("gksu -S sudo systemctl stop tor"), desc='Stop tor service'),
         Key([], "q", lazy.spawn("qalculate-gtk"), desc='Launch the calculator'),
-        Key([], "b", lazy.spawn(myTerm + " -e btop"), desc='Lanuch btop as a bsystem monitor'),
+        Key([], "b", lazy.spawn(myTerm + " --class=btop -e btop"), desc='Lanuch btop as a bsystem monitor'),
     ]),
 
     # Floating windows
@@ -153,12 +153,12 @@ keys = [
 
     ### Switch focus to specific monitor (out of three)
     Key([mod], "w",
-            lazy.to_screen(0),
+            lazy.to_screen(1),
             desc='Keyboard focus to monitor 1'
     ),
 
     Key([mod], "e",
-            lazy.to_screen(1),
+            lazy.to_screen(0),
             desc='Keyboard focus to monitor 2'
     ),
 
@@ -224,7 +224,7 @@ for i in groups:
 # SCRATCHPADS
 groups.append(ScratchPad("scratchpad", [
     DropDown("term", "alacritty --class=scratch", width=0.8, height=0.5, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
-    DropDown("ranger", "alacritty --class=ranger -e ranger", width=0.8, height=0.5, x=0.1, y=0.1, opacity=1, on_focus_lost_hide=False),
+    DropDown("ranger", "alacritty --class=ranger -e ranger", width=0.8, height=0.58, x=0.1, y=0.1, opacity=1, on_focus_lost_hide=False),
     DropDown("volume", "pavucontrol", width=0.6, height=0.5, x=0.2, y=0.2, opacity=1, on_focus_lost_hide=False),
 ]))
 
@@ -243,7 +243,7 @@ layouts = [
         margin = 0,
         ratio = 0.335,
     ),
-    layout.MonadTall(**layout_theme),
+    layout.MonadTall(**layout_theme, name = "MT"),
     layout.Max(
         border_width = 0,
         margin = 2,
@@ -283,11 +283,6 @@ def init_widgets_list():
                 # active_text = "[A]",
                 fmt="[{}]"
             ),
-            widget.Spacer(length = 6),
-            # widget.TextBox(
-            #       text = '7M',
-            #       foreground=colors[3],
-            #   ),
             widget.GroupBox(
                     margin_y = 3,
                     margin_x = 1,
@@ -304,7 +299,7 @@ def init_widgets_list():
                     this_screen_border = colors[1],
                     other_current_screen_border = colors[1],
                     other_screen_border = colors[0],
-                       disable_drag = True,
+                    disable_drag = True,
                     #    foreground = colors[2],
                     #    background = colors[0]
                 ),
@@ -323,15 +318,11 @@ def init_widgets_list():
                 ),
                 widget.Spacer(length = 5),
                 widget.WindowName(
-                    max_chars = 40
+                    max_chars = 40,
+                    font = "Ubuntu Mono Bold",
                 ),
-                widget.Cmus(noplay_color='#ff0011', font="Anta Regular", fontsize=13, format='{play_icon}{artist} / {album} - {title}'),
+                widget.Cmus(noplay_color='#ff0011', font="Anta Regular", fontsize=12.9, format='{play_icon}{artist} / {album} - {title}'),
                 widget.Spacer(length = 4),
-                widget.GenPollCommand(
-                    cmd = "check-microphone",
-                    fmt='<i>{}</i>',
-                    foreground = "#e30526",
-                ),
                 widget.Volume(
                     foreground = colors[2],
                     padding = 1,
@@ -349,13 +340,20 @@ def init_widgets_list():
                 widget.Spacer(length = 2),
                 widget.KeyboardLayout(
                     configured_keyboards = ['us', 'ir'],
-                    display_map = { 'ir': 'Persian', "us": "^ U.S." },
-                    # display_map = { 'ir': 'Persian', "us": "^ United States : SEARCHING FILES..." },
+                    display_map = { 'ir': 'PERSIAN', "us": "U.S." },
                     foreground = colors[2],
                     padding = 5,
                 ),
-                widget.CurrentLayout(padding=6),
-                widget.Spacer(length = 6),
+                widget.CurrentLayout(),
+                widget.Spacer(length = 4),
+                widget.GenPollCommand(
+                    cmd = "~/check-microphone",
+                    shell = True,
+                    fmt='<i>{}</i>',
+                    foreground = "#e30526",
+                    padding = 4
+                ),
+                widget.Spacer(length = 4),
                 widget.Clock(
                     foreground = colors[6],
                     format = "%H:%M %a, %B %d ",
@@ -374,19 +372,23 @@ def init_widgets_list():
         ]
     return widgets_list
 
+
+
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
+    del widgets_screen1[19]
     return widgets_screen1 
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    del widgets_screen2[16:18]
+    del widgets_screen2[16]
+    widgets_screen2.pop()
     return widgets_screen2
 
 # For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
 # For ex: Screen(top=bar.Bar(widgets=init_widgets_screen2(), background="#00000000", size=24)),
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=27, margin=1)),
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, margin=1)),
             Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, margin=1))]
 
 if __name__ in ["config", "__main__"]:
@@ -439,7 +441,8 @@ floating_layout = layout.Floating(
         Match(wm_class="feh"),
         Match(wm_class="viewnior"),
         Match(wm_class="ranger-file-picker"),
-        Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn") # MetaMask Notification
+        Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn"), # MetaMask Notification
+        Match(wm_class="btop")
     ]
 )
 auto_fullscreen = True
