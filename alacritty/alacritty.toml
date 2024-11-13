@@ -1,4 +1,4 @@
-import = ["/home/spectre/.config/alacritty/themes/gotham.toml"]
+#import = ["/home/spectre/.config/alacritty/themes/themes/night_owl.toml"]
 
 [cursor.style]
 shape = "Beam"
@@ -23,5 +23,8 @@ columns = 140
 lines = 27
 
 [window.padding]
-x = 6
-y = 6
+x = 17
+y = 17
+
+[general]
+import = ["/home/spectre/.config/alacritty/themes/themes/cyber_punk_neon.toml"]
