@@ -1,0 +1,33 @@
+From 4d815b67812fd41e912545c344a45e5399ac8fde Mon Sep 17 00:00:00 2001
+From: Phillip Tischler <git@geilerschas.at>
+Date: Sun, 19 Mar 2023 00:03:03 +0100
+Subject: [PATCH] asd
+
+---
+ dmenu_path | 12 +++---------
+ 1 file changed, 3 insertions(+), 9 deletions(-)
+
+diff --git a/dmenu_path b/dmenu_path
+index 3a7cda7..9a7e661 100755
+--- a/dmenu_path
++++ b/dmenu_path
+@@ -1,13 +1,7 @@
+ #!/bin/sh
+
+-cachedir="${XDG_CACHE_HOME:-"$HOME/.cache"}"
+-cache="$cachedir/dmenu_run"
+-
+-[ ! -e "$cachedir" ] && mkdir -p "$cachedir"
+-
+-IFS=:
+-if stest -dqr -n "$cache" $PATH; then
+-	stest -flx $PATH | sort -u | tee "$cache"
++if [ -z "${DMENU_PATH}" ] ; then
++    stest -flx $PATH
+ else
+-	cat "$cache"
++    stest -flx $DMENU_PATH
+ fi
+--
+2.30.2
+
