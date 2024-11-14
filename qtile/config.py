@@ -31,7 +31,6 @@ from libqtile.config import Click, Drag, Group, ScratchPad, DropDown, Key, KeyCh
 from libqtile.lazy import lazy
 
 from qtile_extras import widget
-from libqtile.utils import send_notification
 import qtile_extras.hook
 
 # GLOBAL VARIABLES
@@ -70,6 +69,7 @@ keys = [
     ),
 
     Key([mod], 'd', lazy.spawn("dmenu_run"), desc="Launch dmenu"),
+    Key([mod], "z", lazy.hide_show_bar(position='all'), desc="Toggles the bar to show/hide"),
     
     KeyChord([mod], "p", [
         Key([], "h", lazy.spawn("dm-hub"), desc='List all dmscripts'),
@@ -83,7 +83,9 @@ keys = [
         Key([], "s", lazy.spawn("dm-websearch"), desc='Search various engines'),
         Key([], "a", lazy.spawn("dm-pipewire-out-switcher"), desc='Switch default output for pipewire'),
         Key([], 'p', lazy.group['scratchpad'].dropdown_toggle('volume')),
-        Key([], 't', lazy.group['scratchpad'].dropdown_toggle('term')),
+        Key([], '1', lazy.group['scratchpad'].dropdown_toggle('term')),
+        Key([], '2', lazy.group['scratchpad'].dropdown_toggle('term-2')),
+        Key([], '3', lazy.group['scratchpad'].dropdown_toggle('term-3')),
     ]),
 
     KeyChord([mod], "s", [
@@ -184,7 +186,7 @@ keys = [
         lazy.spawn("setxkbmap ir"),
         desc= "Change to Persian layout"),
 
-    Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('ranger')),
+    Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('yazi')),
 ]
 
 # GROUPS
@@ -224,8 +226,11 @@ for i in groups:
 # SCRATCHPADS
 groups.append(ScratchPad("scratchpad", [
     DropDown("term", "alacritty --class=scratch", width=0.8, height=0.5, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
-    DropDown("ranger", "alacritty --class=ranger -e ranger", width=0.8, height=0.58, x=0.1, y=0.1, opacity=1, on_focus_lost_hide=False),
-    DropDown("volume", "pavucontrol", width=0.6, height=0.5, x=0.2, y=0.2, opacity=1, on_focus_lost_hide=False),
+    DropDown("term-2", "alacritty --class=scratch", width=0.8, height=0.6, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
+    DropDown("term-3", "alacritty --class=scratch", width=0.8, height=0.5, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
+    DropDown("yazi", "alacritty --class=yazi -e yazi", width=0.8, height=0.58, x=0.1, y=0.1, opacity=1, on_focus_lost_hide=False),
+    DropDown("volume", "alacritty --class=pulsemixer -e pulsemixer", width=0.6, height=0.4, x=0.2, y=0.2, opacity=1, on_focus_lost_hide=False),
+    # DropDown("volume", "pavucontrol", width=0.6, height=0.5, x=0.2, y=0.2, opacity=1, on_focus_lost_hide=False),
 ]))
 
 # LAYOUTS
@@ -278,11 +283,11 @@ extension_defaults = widget_defaults.copy()
 def init_widgets_list():
     widgets_list = [
             widget.Spacer(length = 6),
-            widget.CurrentScreen(
-                # active_color = colors[6],
-                # active_text = "[A]",
-                fmt="[{}]"
-            ),
+            # widget.CurrentScreen(
+            #       active_color = colors[6],
+            #       active_text = "[A]",
+            #       fmt="[{}]"
+            # ),
             widget.GroupBox(
                     margin_y = 3,
                     margin_x = 1,
@@ -325,7 +330,6 @@ def init_widgets_list():
                 widget.Spacer(length = 4),
                 widget.Volume(
                     foreground = colors[2],
-                    padding = 1,
                     volume_app = "pamixer",
                     get_volume_command = "pamixer --get-volume-human",
                     check_mute_command = "pamixer --get-mute",
@@ -335,9 +339,8 @@ def init_widgets_list():
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
                     fmt = '{}',
                     format="{MemUsed: .0f} out of{MemTotal: .0f}",
-                    padding = 6,
                 ),
-                widget.Spacer(length = 2),
+                widget.Spacer(length = 4),
                 widget.KeyboardLayout(
                     configured_keyboards = ['us', 'ir'],
                     display_map = { 'ir': 'PERSIAN', "us": "U.S." },
@@ -353,7 +356,7 @@ def init_widgets_list():
                     foreground = "#e30526",
                     padding = 4
                 ),
-                widget.Spacer(length = 4),
+                widget.Spacer(length = 2),
                 widget.Clock(
                     foreground = colors[6],
                     format = "%H:%M %a, %B %d ",
@@ -361,7 +364,7 @@ def init_widgets_list():
                 widget.Systray(  
                     padding = 3,
                 ),
-                widget.Spacer(length = 7),
+                widget.Spacer(length = 4),
                 widget.CPUGraph(
                     border_width=0,
                     start_pos='bottom',
@@ -376,13 +379,13 @@ def init_widgets_list():
 
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
-    del widgets_screen1[19]
+    # del widgets_screen1[19]
     return widgets_screen1 
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    del widgets_screen2[16]
-    widgets_screen2.pop()
+    # del widgets_screen2[16]
+    # widgets_screen2.pop()
     return widgets_screen2
 
 # For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
@@ -409,6 +412,7 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
+floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
     # border_focus=colors[8],
@@ -440,7 +444,6 @@ floating_layout = layout.Floating(
         Match(wm_class="skype"),
         Match(wm_class="feh"),
         Match(wm_class="viewnior"),
-        Match(wm_class="ranger-file-picker"),
         Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn"), # MetaMask Notification
         Match(wm_class="btop")
     ]
@@ -481,3 +484,5 @@ def display_apps_in_certain_groups(window):
         window.togroup("5")
     elif window.name == "Skype":
         window.togroup("7")
+    elif window.name == "Windscribe":
+        window.togroup("9")
