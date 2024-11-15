@@ -68,7 +68,7 @@ keys = [
          desc='Graphical File Manager'
     ),
 
-    Key([mod], 'd', lazy.spawn("dmenu_run"), desc="Launch dmenu"),
+    Key([mod], 'd', lazy.spawn("dmenu_run -fn 'Oxanium Medium:size=10.5'"), desc="Launch dmenu"),
     Key([mod], "z", lazy.hide_show_bar(position='all'), desc="Toggles the bar to show/hide"),
     
     KeyChord([mod], "p", [
@@ -230,8 +230,7 @@ groups.append(ScratchPad("scratchpad", [
     DropDown("term-2", "alacritty --class=scratch", width=0.8, height=0.6, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
     DropDown("term-3", "alacritty --class=scratch", width=0.8, height=0.5, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
     DropDown("yazi", "alacritty --class=yazi -e yazi", width=0.8, height=0.58, x=0.1, y=0.1, opacity=1, on_focus_lost_hide=False),
-    DropDown("volume", "alacritty --class=pulsemixer -e pulsemixer", width=0.6, height=0.4, x=0.2, y=0.2, opacity=1, on_focus_lost_hide=False),
-    # DropDown("volume", "pavucontrol", width=0.6, height=0.5, x=0.2, y=0.2, opacity=1, on_focus_lost_hide=False),
+    DropDown("volume", "alacritty --class=pulsemixer -e pulsemixer", width=0.6, height=0.4, x=0.2, y=0.2, opacity=1, on_focus_lost_hide=True),
 ]))
 
 # LAYOUTS
@@ -344,7 +343,7 @@ def init_widgets_list():
                 widget.Spacer(length = 4),
                 widget.KeyboardLayout(
                     configured_keyboards = ['us', 'ir'],
-                    display_map = { 'ir': 'PERSIAN', "us": "U.S." },
+                    display_map = { 'ir': 'FA', "us": "U.S." },
                     foreground = colors[2],
                     padding = 5,
                 ),
