@@ -168,6 +168,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "u", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Launch rofi drun"),
+    Key([mod], "w", lazy.spawn("rofi -show window"), desc="Launch rofi window"),
     Key([mod], "l", lazy.spawn("slock"), desc="Lock the screen using slock"),
     Key([], "f1", lazy.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), lazy.widget["genpollcommand"].force_update(), desc="Handle the microphone"),
     Key([], "f4", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 a2dp_sink"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the headset mode"),
@@ -412,7 +413,7 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
-floats_kept_above = True
+floats_kept_above = False
 cursor_warp = False
 floating_layout = layout.Floating(
     # border_focus=colors[8],
@@ -435,8 +436,6 @@ floating_layout = layout.Floating(
         Match(title="Tor Browser"),
         Match(title="DevTools"),
         Match(title='Qalculate!'),        # qalculate-gtk
-        Match(wm_class="xdm-app"),
-        Match(wm_class="windscribe"),
         Match(wm_class="Windscribe"),
         Match(wm_class="pavucontrol"),
         Match(wm_class="anydesk"),
@@ -445,7 +444,8 @@ floating_layout = layout.Floating(
         Match(wm_class="feh"),
         Match(wm_class="viewnior"),
         Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn"), # MetaMask Notification
-        Match(wm_class="btop")
+        Match(wm_class="btop"),
+        Match(wm_class="localsend")
     ]
 )
 auto_fullscreen = True
@@ -478,8 +478,6 @@ def start_once():
 def display_apps_in_certain_groups(window):
     if window.name == "Visual Studio Code":
         window.togroup("3")
-    elif window.name == "Untitled - Brave":
-        window.togroup("4")
     elif window.name == "cmus":
         window.togroup("5")
     elif window.name == "Skype":
