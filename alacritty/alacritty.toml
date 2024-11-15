@@ -1,4 +1,5 @@
-#import = ["/home/spectre/.config/alacritty/themes/themes/night_owl.toml"]
+[window]
+opacity = 1
 
 [cursor.style]
 shape = "Beam"
@@ -27,4 +28,6 @@ x = 17
 y = 17
 
 [general]
-import = ["/home/spectre/.config/alacritty/themes/themes/cyber_punk_neon.toml"]
+import = ["/home/spectre/.config/alacritty/themes/themes/night_owl.toml"]
+#import = ["/home/spectre/.config/alacritty/themes/themes/iterm.toml"]
+#import = ["/home/spectre/.config/alacritty/themes/themes/hyper.toml"]
