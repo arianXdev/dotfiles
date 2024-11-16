@@ -1,0 +1,33 @@
+[window]
+opacity = 0.8
+
+[cursor.style]
+shape = "Beam"
+
+[font.bold]
+family = "Operator Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Operator Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Operator Mono"
+style = "Italic"
+
+[font.normal]
+family = "Operator Mono"
+
+[window.dimensions]
+columns = 140
+lines = 27
+
+[window.padding]
+x = 17
+y = 17
+
+[general]
+import = ["/home/spectre/.config/alacritty/themes/night_owl.toml"]
+#import = ["/home/spectre/.config/alacritty/themes/themes/iterm.toml"]
+#import = ["/home/spectre/.config/alacritty/themes/themes/hyper.toml"]
