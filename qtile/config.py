@@ -194,7 +194,7 @@ keys = [
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 group_labels = ["$$$", ">--", "</>", "&&&", "^~^", "***", "@AT", "VID", "BACKYARD",]
-group_layouts = ["monadtall", "tile", "tile", "tile", "monadtall", "monadtall", "floating", "max", "max"]
+group_layouts = ["monadtall", "monadtall", "max", "tile", "monadtall", "monadtall", "floating", "max", "max"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -444,7 +444,8 @@ floating_layout = layout.Floating(
         Match(wm_class="viewnior"),
         Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn"), # MetaMask Notification
         Match(wm_class="btop"),
-        Match(wm_class="localsend")
+        Match(wm_class="localsend"),
+        Match(wm_class="flameshot")
     ]
 )
 auto_fullscreen = True
