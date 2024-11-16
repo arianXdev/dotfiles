@@ -248,7 +248,7 @@ layouts = [
         margin = 0,
         ratio = 0.335,
     ),
-    layout.MonadTall(**layout_theme, name = "MT"),
+    layout.MonadTall(**layout_theme),
     layout.Max(
         border_width = 0,
         margin = 2,
