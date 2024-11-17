@@ -42,7 +42,7 @@ count_selected = { fg = "white", bg = "yellow" }
 
 # Border
 border_symbol = "│"
-border_style  = { fg = "gray" }
+border_style  = { fg = "cyan" }
 
 # Highlighting
 syntect_theme = ""
@@ -53,12 +53,14 @@ syntect_theme = ""
 # : Status {{{
 
 [status]
-separator_open  = ""
-separator_close = ""
+# separator_open  = ""
+# separator_close = ""
+separator_open  = ""
+separator_close = ""
 separator_style = { fg = "gray", bg = "gray" }
 
 # Mode
-mode_normal = { bg = "blue", bold = true }
+mode_normal = { bg = "black", bold = true }
 mode_select = { bg = "red", bold = true }
 mode_unset  = { bg = "red", bold = true }
 
