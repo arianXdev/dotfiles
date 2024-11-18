@@ -151,6 +151,16 @@ keymap = [
 	{ on = "<F1>", run = "help", desc = "Open help" },
 ]
 
+prepend_keymap = [
+	# Operation
+	{ on = "<Enter>",	run = "plugin --sync smart-enter",   desc = "Enter the child directory, or open the file" },
+]
+append_keymap = [
+	# Goto
+	{ on = [ "g", "t" ],	run = "cd ~/.local/share/Trash/files", desc = "Go to the Trash directory" },
+	{ on = [ "g", "r" ],	run = "cd /run/media", desc = "Go to /run/media" },
+]
+
 [tasks]
 
 keymap = [
