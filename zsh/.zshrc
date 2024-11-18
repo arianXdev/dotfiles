@@ -10,6 +10,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="edvardm"
 
+#if [ -f /usr/bin/fastfetch ]; then
+#	fastfetch
+#fi
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -105,12 +109,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-#
-alias neofetch="neofetch --color_blocks off"
+
+alias cd="z"
 alias tornew="pidof tor | xargs sudo kill -HUP"
 alias ytdl="yt-dlp --proxy 'socks5://127.0.0.1:9150'"
-
+alias rm='trash -v'
 alias bl="bluetoothctl"
 alias blc="bluetoothctl connect"
 alias bld="bluetoothctl disconnect"
@@ -143,4 +146,6 @@ source <(fzf --zsh)
 
 ### SETTING THE STARSHIP PROMPT ###
 eval "$(starship init zsh)"
+
+eval "$(zoxide init zsh)"
 
