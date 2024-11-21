@@ -113,10 +113,12 @@ source $ZSH/oh-my-zsh.sh
 alias cd="z"
 alias tornew="pidof tor | xargs sudo kill -HUP"
 alias ytdl="yt-dlp --proxy 'socks5://127.0.0.1:9150'"
-alias rm='trash -v'
+#alias rm='trash -v'
 alias bl="bluetoothctl"
 alias blc="bluetoothctl connect"
 alias bld="bluetoothctl disconnect"
+alias history="echo 'Fuck you, bitch!'"
+alias ff="fastfetch"
 
 # Qtile WM configuration
 alias qconfig="code ~/.config/qtile/config.py"

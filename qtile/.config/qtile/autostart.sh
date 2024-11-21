@@ -1,7 +1,7 @@
 #!/bin/sh
-lxsession --de="ARH" -a &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dbus-update-activation-environment --all &
-gnome-keyring-daemon --start --components=secrets &
+#gnome-keyring-daemon --start --components=secrets &
 picom --daemon &
 clipmenud &
 sleep 1 &

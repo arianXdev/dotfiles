@@ -77,6 +77,7 @@ keys = [
         Key([], "k", lazy.spawn("dm-kill"), desc='Kill processes'),
         Key([], "w", lazy.spawn("dm-wifi"), desc='Connect to wifi'),
         Key([], "n", lazy.spawn("dm-note"), desc='Store and copy notes'),
+        Key([], "m", lazy.spawn("dm-usbmount -r"), desc='Mount drives'),
         Key([], "c", lazy.spawn("clipmenu"), desc='Clipboard'),
         Key([alt], "c", lazy.spawn("clipdel -d '.*'"), desc='Delete all of the clipboard entries'),
         Key([], "d", lazy.spawn("dm-longman"), desc='Look up words in Longman dictionary'),
@@ -194,7 +195,7 @@ keys = [
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 group_labels = ["$$$", ">--", "</>", "&&&", "^~^", "***", "@AT", "VID", "BACKYARD",]
-group_layouts = ["monadtall", "monadtall", "max", "tile", "monadtall", "monadtall", "floating", "max", "max"]
+group_layouts = ["monadtall", "monadtall", "max", "tile", "monadtall", "monadtall", "floating", "max", "floating"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -484,3 +485,5 @@ def display_apps_in_certain_groups(window):
         window.togroup("7")
     elif window.name == "Windscribe":
         window.togroup("9")
+    elif window.name == "MEGAsync":
+        window.togroup("6")
