@@ -135,6 +135,8 @@ alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias jctl="journalctl -p 3 -xb"
 
 
+alias polkit-gnome="/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
