@@ -30,8 +30,6 @@ from libqtile import bar, extension, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, ScratchPad, DropDown, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 
-from qtile_extras import widget
-import qtile_extras.hook
 
 # GLOBAL VARIABLES
 mod = "mod4"
@@ -446,7 +444,8 @@ floating_layout = layout.Floating(
         Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn"), # MetaMask Notification
         Match(wm_class="btop"),
         Match(wm_class="localsend"),
-        Match(wm_class="flameshot")
+        Match(wm_class="flameshot"),
+        Match(wm_class="MEGAsync")
     ]
 )
 auto_fullscreen = True
