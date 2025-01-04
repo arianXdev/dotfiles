@@ -1,4 +1,4 @@
-@theme "./arian-rofi-theme.rasi"
+@theme "arian-rofi-theme"
 
 configuration {
 	modes: "drun,run";
