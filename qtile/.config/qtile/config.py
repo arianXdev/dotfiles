@@ -123,14 +123,14 @@ keys = [
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.reset(), desc="Reset all window sizes"),
 
-    Key([mod, "control"], "Right",
+    Key([mod, "control"], "Left",
         lazy.layout.grow_right(),
         lazy.layout.grow(),
         lazy.layout.increase_ratio(),
         lazy.layout.delete(),
     ),
 
-    Key([mod, "control"], "Left",
+    Key([mod, "control"], "Right",
         lazy.layout.grow_left(),
         lazy.layout.shrink(),
         lazy.layout.decrease_ratio(),
