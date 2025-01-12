@@ -56,18 +56,22 @@ def maximize_by_switching_layout(qtile):
 
 # KEYS
 keys = [
-    Key([mod], "b",
-        lazy.spawn(myBrowser),
-        desc='Brave Browser'
-    ),
-
-    Key([alt], "t",
-         lazy.spawn("pcmanfm"),
-         desc='Graphical File Manager'
-    ),
-
+    # The essentials
+    Key([mod], "Return", lazy.spawn(myTerm), desc="Launch terminal"),
+    Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('yazi')),
+    Key([mod], "b", lazy.spawn(myBrowser), desc='Brave Browser'),
+    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([alt], "t", lazy.spawn("pcmanfm"), desc='Graphical File Manager'),
+    Key([alt], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
+    Key([alt], "Tab", lazy.group.next_window()),
+    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
+    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], 'd', lazy.spawn("dmenu_run -fn 'Oxanium Medium:size=10.5'"), desc="Launch dmenu"),
+    Key([mod, "shift"], "c", lazy.window.kill(), desc='Kill focused window'),
+    Key([mod], "f", maximize_by_switching_layout(), lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
     Key([mod], "z", lazy.hide_show_bar(position='all'), desc="Toggles the bar to show/hide"),
+
+
     
     KeyChord([mod], "p", [
         Key([], "h", lazy.spawn("dm-hub"), desc='List all dmscripts'),
@@ -75,12 +79,14 @@ keys = [
         Key([], "k", lazy.spawn("dm-kill"), desc='Kill processes'),
         Key([], "w", lazy.spawn("dm-wifi"), desc='Connect to wifi'),
         Key([], "n", lazy.spawn("dm-note"), desc='Store and copy notes'),
-        Key([], "m", lazy.spawn("dm-usbmount -r"), desc='Mount drives'),
+        Key([], "m", lazy.spawn("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"), lazy.spawn("dm-usbmount -r"), desc='Mount drives'),
         Key([], "c", lazy.spawn("clipmenu"), desc='Clipboard'),
         Key([alt], "c", lazy.spawn("clipdel -d '.*'"), desc='Delete all of the clipboard entries'),
         Key([], "d", lazy.spawn("dm-longman"), desc='Look up words in Longman dictionary'),
         Key([], "s", lazy.spawn("dm-websearch"), desc='Search various engines'),
         Key([], "a", lazy.spawn("dm-pipewire-out-switcher"), desc='Switch default output for pipewire'),
+        
+        
         Key([], 'p', lazy.group['scratchpad'].dropdown_toggle('volume')),
         Key([], '1', lazy.group['scratchpad'].dropdown_toggle('term')),
         Key([], '2', lazy.group['scratchpad'].dropdown_toggle('term-2')),
@@ -92,17 +98,8 @@ keys = [
         Key([alt], "t", lazy.spawn("gksu -S sudo systemctl stop tor"), desc='Stop tor service'),
         Key([], "q", lazy.spawn("qalculate-gtk"), desc='Launch the calculator'),
         Key([], "b", lazy.spawn(myTerm + " --class=btop -e btop"), desc='Lanuch btop as a bsystem monitor'),
+        Key([], "s", lazy.spawn("flameshot gui"), desc='Take a screenshot using Flameshot'),
     ]),
-
-    # Floating windows
-    Key([alt], "f",
-        lazy.window.toggle_floating(),
-        desc="Toggle floating",
-    ),
-
-    Key([alt], "Tab",
-        lazy.group.next_window()
-    ),
     
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -110,12 +107,14 @@ keys = [
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
+
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
@@ -123,32 +122,27 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.reset(), desc="Reset all window sizes"),
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
+
+    Key([mod, "control"], "Right",
+        lazy.layout.grow_right(),
+        lazy.layout.grow(),
+        lazy.layout.increase_ratio(),
+        lazy.layout.delete(),
+    ),
+
+    Key([mod, "control"], "Left",
+        lazy.layout.grow_left(),
+        lazy.layout.shrink(),
+        lazy.layout.decrease_ratio(),
+        lazy.layout.add(),
+    ),
+
     Key(
         [mod, "shift"],
         "Return",
         lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack",
     ),
-
-    Key([mod], "Return", lazy.spawn(myTerm), desc="Launch terminal"),
-    # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-
-    Key([mod, "shift"], "c",
-             lazy.window.kill(),
-             desc='Kill focused window'
-    ),
-
-    # Key([mod], "f",
-    #         lazy.window.toggle_fullscreen(),
-    #         desc='Put the focused window to/from fullscreen mode'
-    # ),
-
-    Key([mod], "f", maximize_by_switching_layout(), lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
 
     Key([mod, "shift"], "m", minimize_all(), desc="Toggle hide/show all windows on current group"),
 
@@ -163,11 +157,11 @@ keys = [
             desc='Keyboard focus to monitor 2'
     ),
 
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "u", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Launch rofi drun"),
     Key([mod], "w", lazy.spawn("rofi -show window"), desc="Launch rofi window"),
+
     Key([mod], "l", lazy.spawn("slock"), desc="Lock the screen using slock"),
     Key([], "f1", lazy.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), lazy.widget["genpollcommand"].force_update(), desc="Handle the microphone"),
     Key([], "f4", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 a2dp_sink"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the headset mode"),
@@ -185,8 +179,6 @@ keys = [
     Key([mod],"i",
         lazy.spawn("setxkbmap ir"),
         desc= "Change to Persian layout"),
-
-    Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('yazi')),
 ]
 
 # GROUPS
@@ -252,7 +244,12 @@ layouts = [
         border_width = 0,
         margin = 2,
     ),
-    layout.Floating(**layout_theme)
+    layout.Floating(**layout_theme),
+    layout.Columns(
+        border_normal = "777777",
+        border_focus = "007efc",
+        margin = 3,
+    )
 ]
 
 colors = [
@@ -282,11 +279,6 @@ extension_defaults = widget_defaults.copy()
 def init_widgets_list():
     widgets_list = [
             widget.Spacer(length = 6),
-            # widget.CurrentScreen(
-            #       active_color = colors[6],
-            #       active_text = "[A]",
-            #       fmt="[{}]"
-            # ),
             widget.GroupBox(
                     margin_y = 3,
                     margin_x = 1,
