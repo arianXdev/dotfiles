@@ -99,6 +99,8 @@ keys = [
         Key([], "q", lazy.spawn("qalculate-gtk"), desc='Launch the calculator'),
         Key([], "b", lazy.spawn(myTerm + " --class=btop -e btop"), desc='Lanuch btop as a bsystem monitor'),
         Key([], "s", lazy.spawn("flameshot gui"), desc='Take a screenshot using Flameshot'),
+        Key([], "c", lazy.spawn("windscribe-cli connect"), desc="Windscribe connect"),
+        Key([alt], "c", lazy.spawn("windscribe-cli disconnect"), desc="Windscribe disconnect"),
     ]),
     
     # Switch between windows
