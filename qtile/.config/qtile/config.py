@@ -62,7 +62,6 @@ keys = [
     Key([mod], "b", lazy.spawn(myBrowser), desc='Brave Browser'),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([alt], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
-    Key([alt], "Tab", lazy.group.next_window()),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc='Kill focused window'),
@@ -83,6 +82,7 @@ keys = [
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
+    Key([alt], "Tab", lazy.group.next_window()),
 
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
@@ -123,12 +123,12 @@ keys = [
     Key([mod, "shift"], "m", minimize_all(), desc="Toggle hide/show all windows on current group"),
 
     ### Switch focus to specific monitor (out of three)
-    Key([mod], "w",
+    Key([alt], "w",
             lazy.to_screen(1),
             desc='Keyboard focus to monitor 1'
     ),
 
-    Key([mod], "e",
+    Key([alt], "e",
             lazy.to_screen(0),
             desc='Keyboard focus to monitor 2'
     ),
@@ -139,10 +139,10 @@ keys = [
     Key([], "f4", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 a2dp_sink"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the headset mode"),
     Key([], "f5", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 handsfree_head_unit"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the microphone mode"),
     
-    Key([mod], "space",
+    Key([alt], "space",
         lazy.spawn("setxkbmap us"), 
         desc= "Change to US layout"),
-    Key([mod], "i",
+    Key([alt], "i",
         lazy.spawn("setxkbmap ir"), 
         desc= "Change to FA layout"),
 ]
