@@ -61,48 +61,22 @@ keys = [
     Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('yazi')),
     Key([mod], "b", lazy.spawn(myBrowser), desc='Brave Browser'),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([alt], "t", lazy.spawn("pcmanfm"), desc='Graphical File Manager'),
     Key([alt], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
     Key([alt], "Tab", lazy.group.next_window()),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], 'd', lazy.spawn("dmenu_run -fn 'Oxanium Medium:size=10.5'"), desc="Launch dmenu"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc='Kill focused window'),
     Key([mod], "f", maximize_by_switching_layout(), lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
     Key([mod], "z", lazy.hide_show_bar(position='all'), desc="Toggles the bar to show/hide"),
 
-
     
-    KeyChord([mod], "p", [
-        Key([], "h", lazy.spawn("dm-hub"), desc='List all dmscripts'),
-        Key([], "i", lazy.spawn("dm-maim"), desc='Take a screenshot'),
-        Key([], "k", lazy.spawn("dm-kill"), desc='Kill processes'),
-        Key([], "w", lazy.spawn("dm-wifi"), desc='Connect to wifi'),
-        Key([], "n", lazy.spawn("dm-note"), desc='Store and copy notes'),
-        Key([], "m", lazy.spawn("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"), lazy.spawn("dm-usbmount -r"), desc='Mount drives'),
-        Key([], "c", lazy.spawn("clipmenu"), desc='Clipboard'),
-        Key([alt], "c", lazy.spawn("clipdel -d '.*'"), desc='Delete all of the clipboard entries'),
-        Key([], "d", lazy.spawn("dm-longman"), desc='Look up words in Longman dictionary'),
-        Key([], "s", lazy.spawn("dm-websearch"), desc='Search various engines'),
-        Key([], "a", lazy.spawn("dm-pipewire-out-switcher"), desc='Switch default output for pipewire'),
-        
-        
+    KeyChord([mod], "o", [
         Key([], 'p', lazy.group['scratchpad'].dropdown_toggle('volume')),
         Key([], '1', lazy.group['scratchpad'].dropdown_toggle('term')),
         Key([], '2', lazy.group['scratchpad'].dropdown_toggle('term-2')),
         Key([], '3', lazy.group['scratchpad'].dropdown_toggle('term-3')),
     ]),
 
-    KeyChord([mod], "s", [
-        Key([], "t", lazy.spawn("gksu -S sudo systemctl start tor"), desc='Start tor service'),
-        Key([alt], "t", lazy.spawn("gksu -S sudo systemctl stop tor"), desc='Stop tor service'),
-        Key([], "q", lazy.spawn("qalculate-gtk"), desc='Launch the calculator'),
-        Key([], "b", lazy.spawn(myTerm + " --class=btop -e btop"), desc='Lanuch btop as a bsystem monitor'),
-        Key([], "s", lazy.spawn("flameshot gui"), desc='Take a screenshot using Flameshot'),
-        Key([], "c", lazy.spawn("windscribe-cli connect"), desc="Windscribe connect"),
-        Key([alt], "c", lazy.spawn("windscribe-cli disconnect"), desc="Windscribe disconnect"),
-    ]),
-    
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -161,26 +135,16 @@ keys = [
 
     Key([mod], "u", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
-    Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Launch rofi drun"),
-    Key([mod], "w", lazy.spawn("rofi -show window"), desc="Launch rofi window"),
-
-    Key([mod], "l", lazy.spawn("slock"), desc="Lock the screen using slock"),
     Key([], "f1", lazy.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), lazy.widget["genpollcommand"].force_update(), desc="Handle the microphone"),
     Key([], "f4", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 a2dp_sink"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the headset mode"),
     Key([], "f5", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 handsfree_head_unit"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the microphone mode"),
     
-    # Sound control
-    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
-
-    # Keyboard Layout
     Key([mod], "space",
         lazy.spawn("setxkbmap us"), 
         desc= "Change to US layout"),
-    Key([mod],"i",
-        lazy.spawn("setxkbmap ir"),
-        desc= "Change to Persian layout"),
+    Key([mod], "i",
+        lazy.spawn("setxkbmap ir"), 
+        desc= "Change to FA layout"),
 ]
 
 # GROUPS

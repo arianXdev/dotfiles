@@ -1,0 +1,58 @@
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Launch dmenu
+super + d
+    dmenu_run -fn "Oxanium Medium:size=10.5"
+
+# Launch rofi
+super + {r,w}
+    {rofi -show drun, rofi -show window}
+
+# Lock the screen using slock
+super + l
+    slock
+
+# Graphical File Manager
+alt + t
+    pcmanfm
+
+# dmscripts (SUPER + p followed by another key)
+super + p; {h,i,k,w,n,d,s,a}
+    {dm-hub, dm-maim, dm-kill, dm-wifi, dm-note, dm-longman, dm-websearch, dm-pipewire-out-switcher}
+
+# Mount drives
+super + p; m
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & dm-usbmount -r
+
+# Clipboard | Delete all of the clipboard entries
+super + p; {_,alt + } c
+    {clipmenu, clipdel -d ".*"}
+
+
+# Take a screenshot using Flameshot
+super + s; s
+    flameshot gui
+
+super + s; {q,b}
+    {qalculate-gtk, alacritty --class=btop -e btop}
+
+
+# Tor service
+super + s; {_,alt + } t
+    {gksu -S sudo systemctl start tor, gksu -S sudo systemctl stop tor}
+
+# Windscribe connection
+super + s; {_,alt + } c
+    {windscribe-cli connect, windscribe-cli disconnect}
+
+# Sound control
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +5%

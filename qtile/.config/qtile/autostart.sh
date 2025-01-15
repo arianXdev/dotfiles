@@ -3,6 +3,7 @@
 dbus-update-activation-environment --all &
 # gnome-keyring-daemon --start --components=secrets &
 picom --daemon &
+sxhkd &
 clipmenud &
 sleep 1 &
 nitrogen --restore & 
