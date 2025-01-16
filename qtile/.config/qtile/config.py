@@ -307,7 +307,7 @@ def init_widgets_list():
                 widget.CurrentLayout(),
                 widget.Spacer(length = 4),
                 widget.GenPollCommand(
-                    cmd = "~/check-microphone",
+                    cmd = "/home/spectre/GitHub/dotfiles/scripts/check-microphone",
                     shell = True,
                     fmt='<i>{}</i>',
                     foreground = "#e30526",

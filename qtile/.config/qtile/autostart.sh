@@ -1,7 +1,5 @@
 #!/bin/sh
-# /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dbus-update-activation-environment --all &
-# gnome-keyring-daemon --start --components=secrets &
 picom --daemon &
 sxhkd &
 clipmenud &
