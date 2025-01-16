@@ -19,8 +19,8 @@ alt + t
     pcmanfm
 
 # dmscripts (SUPER + p followed by another key)
-super + p; {h,i,k,w,n,d,s,a}
-    {dm-hub, dm-maim, dm-kill, dm-wifi, dm-note, dm-longman, dm-websearch, dm-pipewire-out-switcher}
+super + p; {h,i,k,w,n,d,s,a,p}
+    {dm-hub, dm-maim, dm-kill, dm-wifi, dm-note, dm-longman, dm-websearch, dm-pipewire-out-switcher, colorpicker --short --preview --one-shot | xsel -b}
 
 # Mount drives
 super + p; m
