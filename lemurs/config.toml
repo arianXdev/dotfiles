@@ -91,7 +91,7 @@ show_background = true
 # Allow to set the default background color for the login shell
 color = "black"
 # Settings for the background block's borders
-show_border = true
+show_border = false
 border_color = "cyan"
 
 [power_controls]
@@ -182,7 +182,7 @@ mover_color = "dark gray"
 mover_modifiers = ""
 
 # Mover's color and modifiers whilst the selector is focused
-mover_color_focused = "orange"
+mover_color_focused = "red"
 mover_modifiers_focused = "bold" 
 
 # The characters used to display the movers. Suggestions are:
@@ -251,8 +251,8 @@ title_color = "white"
 content_color = "white"
 
 # The title's color and modifiers whilst the username field is focused
-title_color_focused = "orange"
-content_color_focused = "orange"
+title_color_focused = "light red"
+content_color_focused = "light red"
 
 # Enables showing the borders
 show_border = true
@@ -284,15 +284,15 @@ title_color = "white"
 content_color = "white"
 
 # The title's color and modifiers whilst the password field is focused
-title_color_focused = "orange"
-content_color_focused = "orange"
+title_color_focused = "light red"
+content_color_focused = "light red"
 
 # Enables showing the borders
 show_border = true
 # The borders' color and modifiers whilst the username field is unfocused
 border_color = "white"
 # The borders' color and modifiers whilst the username field is focused
-border_color_focused = "orange"
+border_color_focused = "red"
 
 # Constrain the width of the password field
 use_max_width = true
