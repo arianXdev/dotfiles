@@ -151,7 +151,7 @@ keys = [
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
 group_labels = ["$$$", ">--", "</>", "&&&", "^~^", "***", "@AT", "VID", "BACKYARD",]
-group_layouts = ["monadtall", "monadtall", "max", "tile", "monadtall", "monadtall", "floating", "max", "floating"]
+group_layouts = ["monadtall", "monadtall", "max", "max", "tile", "floating", "floating", "max", "floating"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -184,7 +184,7 @@ for i in groups:
 # SCRATCHPADS
 groups.append(ScratchPad("scratchpad", [
     DropDown("term", "alacritty --class=scratch", width=0.8, height=0.5, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
-    DropDown("term-2", "alacritty --class=scratch", width=0.8, height=0.6, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
+    DropDown("term-2", "alacritty --class=scratch -e tmux a", width=0.8, height=0.6, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
     DropDown("term-3", "alacritty --class=scratch", width=0.8, height=0.5, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
     DropDown("yazi", "alacritty --class=yazi -e yazi", width=0.8, height=0.58, x=0.1, y=0.1, opacity=1, on_focus_lost_hide=False),
     DropDown("volume", "alacritty --class=pulsemixer -e pulsemixer", width=0.6, height=0.4, x=0.2, y=0.2, opacity=1, on_focus_lost_hide=True),
@@ -193,7 +193,7 @@ groups.append(ScratchPad("scratchpad", [
 # LAYOUTS
 layout_theme = {
     "border_width": 2,
-    "margin": 8,
+    "margin": 6,
     "border_focus": "007efc",
     "border_normal": "777777"
 }
@@ -206,10 +206,7 @@ layouts = [
         ratio = 0.335,
     ),
     layout.MonadTall(**layout_theme),
-    layout.Max(
-        border_width = 0,
-        margin = 2,
-    ),
+    layout.Max(**layout_theme),
     layout.Floating(**layout_theme),
     layout.Columns(
         border_normal = "777777",
