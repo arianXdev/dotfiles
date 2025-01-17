@@ -155,7 +155,7 @@ hint_margin = 2
 # - "visible" - Always show the switcher [default]
 # - "hidden"  - Always hide the switcher
 # - [key]     - F1-F12 to be able to toggle the visiblity
-switcher_visibility = "visible"
+switcher_visibility = "hidden"
 
 # The text in the top-left to display how to toggle the switcher. The text
 # '%key%' will be replaced with the switcher_visibility key. This is not shown
@@ -251,8 +251,8 @@ title_color = "white"
 content_color = "white"
 
 # The title's color and modifiers whilst the username field is focused
-title_color_focused = "light red"
-content_color_focused = "light red"
+title_color_focused = "light cyan"
+content_color_focused = "#1AE9FF"
 
 # Enables showing the borders
 show_border = true
