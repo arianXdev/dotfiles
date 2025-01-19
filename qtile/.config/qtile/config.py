@@ -150,7 +150,7 @@ keys = [
 # GROUPS
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
-group_labels = ["$$$", ">--", "</>", "&&&", "^~^", "***", "@AT", "VID", "BACKYARD",]
+group_labels = ["$$$", ">--", "</>", "&&&", "^~^", "***", "@AT", "VID", "SYSTEM",]
 group_layouts = ["monadtall", "monadtall", "max", "max", "tile", "floating", "floating", "max", "floating"]
 
 for i in range(len(group_names)):
@@ -219,7 +219,7 @@ colors = [
     ["#282c34", "#282c34"],
     ["#1c1f24", "#1c1f24"],
     ["#dfdfdf", "#dfdfdf"],
-    ["#ff6c6b", "#ff6c6b"],
+    ["#f74240", "#f74240"],
     ["#98be65", "#98be65"],
     ["#da8548", "#da8548"],
     ["#51afef", "#51afef"],
@@ -233,8 +233,7 @@ colors = [
 widget_defaults = dict(
     font="Operator Mono",
     fontsize=12,
-    padding=3,
-    # background=colors[1]
+    padding=4,
 )
 
 extension_defaults = widget_defaults.copy()
@@ -259,49 +258,55 @@ def init_widgets_list():
                     other_current_screen_border = colors[1],
                     other_screen_border = colors[0],
                     disable_drag = True,
-                    #    foreground = colors[2],
-                    #    background = colors[0]
+                    toggle = False,
+                    urgent_alert_method = "text",
                 ),
                 widget.TextBox(
                     text = '|',
                     font = "Ubuntu Mono",
-                    foreground = colors[1],
+                    foreground = colors[6],
                     padding = 2,
                     fontsize = 14
                 ),
                 widget.Prompt(
-                    prompt="command: ",
+                    prompt="COMMAND: ",
+                    fontsize = 13,
                     foreground = '00e325',
                     cursor = True,
                     padding = 10,
                 ),
-                widget.Spacer(length = 5),
+                widget.Spacer(length = 4),
                 widget.WindowName(
                     max_chars = 40,
-                    font = "Ubuntu Mono Bold",
+                    font = "Oxanium SemiBold",
                 ),
-                widget.Cmus(noplay_color='#ff0011', font="Anta Regular", fontsize=12.9, format='{play_icon}{artist} / {album} - {title}'),
+                widget.Cmus(noplay_color='#ff0011', font="Tektur Medium", fontsize=12.9, format='{play_icon}{artist} / {album} - {title}'),
                 widget.Spacer(length = 4),
                 widget.Volume(
-                    foreground = colors[2],
+                    font = "Oxanium SemiBold",
+                    fontsize = 12.4,
+                    foreground = colors[7],
                     volume_app = "pamixer",
                     get_volume_command = "pamixer --get-volume-human",
                     check_mute_command = "pamixer --get-mute",
                 ),
                 widget.Memory(
+                    font = "Oxanium SemiBold",
+                    fontsize = 12.5,
                     foreground = colors[8],
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
-                    fmt = '{}',
-                    format="{MemUsed: .0f} out of{MemTotal: .0f}",
+                    format = "{MemUsed: .0f} out of{MemTotal: .0f} ({MemPercent}%)",
                 ),
                 widget.Spacer(length = 4),
                 widget.KeyboardLayout(
                     configured_keyboards = ['us', 'ir'],
-                    display_map = { 'ir': 'FA', "us": "U.S." },
-                    foreground = colors[2],
-                    padding = 5,
+                    display_map = { 'ir': '🇦🇶', "us": "🇺🇸" },
                 ),
-                widget.CurrentLayout(),
+                widget.Spacer(length = 4),
+                widget.CurrentLayout(
+                    font = "Oxanium SemiBold",
+                    fontsize = 12.1,
+                ),
                 widget.Spacer(length = 4),
                 widget.GenPollCommand(
                     cmd = "/home/spectre/GitHub/dotfiles/scripts/check-microphone",
@@ -310,20 +315,20 @@ def init_widgets_list():
                     foreground = "#e30526",
                     padding = 4
                 ),
-                widget.Spacer(length = 2),
                 widget.Clock(
+                    font = "Oxanium SemiBold",
+                    fontsize = 13,
                     foreground = colors[6],
-                    format = "%H:%M %a, %B %d ",
+                    format = "%H:%M %a, %B %d",
                 ),
-                widget.Systray(  
-                    padding = 3,
-                ),
+                widget.Spacer(length = 4),
+                widget.Systray(icon_size = 18),
                 widget.Spacer(length = 4),
                 widget.CPUGraph(
                     border_width=0,
                     start_pos='bottom',
-                    fill_color="#46d9ff",
-                    graph_color="#46d9ff",
+                    fill_color= colors[3],
+                    graph_color= colors[8],
                     padding = 2,
                 ),
         ]
@@ -341,7 +346,6 @@ def init_widgets_screen2():
     # del widgets_screen2[16]
     # widgets_screen2.pop()
     return widgets_screen2
-
 # For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
 # For ex: Screen(top=bar.Bar(widgets=init_widgets_screen2(), background="#00000000", size=24)),
 def init_screens():
