@@ -14,6 +14,9 @@ super + {r,w}
 super + l
     slock
 
+super + Return
+    alacritty -e tmux a
+
 # Graphical File Manager
 alt + t
     pcmanfm
