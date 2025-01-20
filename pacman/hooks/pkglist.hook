@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Install
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+When = PostTransaction
+Exec = /bin/zsh -c '/usr/bin/pacman -Qqe > /home/spectre/GitHub/dotfiles/pkglist.txt' 
