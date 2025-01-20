@@ -86,6 +86,8 @@ keys = [
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     Key([alt], "Tab", lazy.group.next_window()),
 
+    Key([mod, "shift"], "space", lazy.layout.flip()),
+
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
@@ -380,7 +382,7 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
-floats_kept_above = False
+floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
     # border_focus=colors[8],

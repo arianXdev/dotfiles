@@ -5,4 +5,4 @@ export CONKY_PATH="~/GitHub/my-conky-config"
 export CM_SELECTIONS="clipboard"
 export CM_MAX_CLIPS=20
 
-export QT_QPA_PLATFORMTHEME=qt5ct:qt6ct
+export QT_QPA_PLATFORMTHEME=qt6ct
