@@ -39,7 +39,7 @@ super + s; s
     flameshot gui
 
 super + s; {q,b}
-    {qalculate-gtk, alacritty --class=btop -e btop}
+    {qalculate-qt, alacritty --class=btop -e btop}
 
 
 # Tor service

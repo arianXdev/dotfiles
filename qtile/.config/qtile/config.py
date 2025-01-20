@@ -30,6 +30,8 @@ from libqtile import bar, extension, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, ScratchPad, DropDown, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 
+from qtile_extras import widget
+from qtile_extras.widget.decorations import RectDecoration
 
 # GLOBAL VARIABLES
 mod = "mod4"
@@ -219,7 +221,7 @@ colors = [
     ["#282c34", "#282c34"],
     ["#1c1f24", "#1c1f24"],
     ["#dfdfdf", "#dfdfdf"],
-    ["#f74240", "#f74240"],
+    ["#FB3048", "#FB3048"],
     ["#98be65", "#98be65"],
     ["#da8548", "#da8548"],
     ["#51afef", "#51afef"],
@@ -316,10 +318,18 @@ def init_widgets_list():
                     padding = 4
                 ),
                 widget.Clock(
-                    font = "Oxanium SemiBold",
+                    font = "Oxanium Medium",
                     fontsize = 13,
-                    foreground = colors[6],
+                    foreground = colors[0],
                     format = "%H:%M %a, %B %d",
+                    decorations=[
+                     RectDecoration(
+                         filled = True,
+                         colour = colors[3], 
+                         radius = 6,
+                         padding_y = 4
+                     )
+                    ],
                 ),
                 widget.Spacer(length = 4),
                 widget.Systray(icon_size = 18),
