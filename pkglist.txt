@@ -63,7 +63,7 @@ pandoc-bin
 paru-bin
 paru-bin-debug
 paru-debug
-pcmanfm
+pcmanfm-qt
 picom
 polkit-gnome
 pulseaudio

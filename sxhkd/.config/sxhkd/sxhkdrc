@@ -19,7 +19,7 @@ super + Return
 
 # Graphical File Manager
 alt + t
-    pcmanfm
+    pcmanfm-qt
 
 # dmscripts (SUPER + p followed by another key)
 super + p; {h,i,k,w,n,d,s,a,p}
