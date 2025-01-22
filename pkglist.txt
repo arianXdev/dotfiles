@@ -102,12 +102,12 @@ tmux
 tor
 torbrowser-launcher
 torsocks
-transmission-qt
 trash-cli
 ttf-firacode-nerd
 ttf-joypixels
 ttf-ubuntu-font-family
 udiskie
+ufw
 unrar
 unzip
 viewnior
