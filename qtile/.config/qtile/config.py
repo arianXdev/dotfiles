@@ -46,6 +46,7 @@ def minimize_all(qtile):
         if hasattr(win, "toggle_minimize"):
             win.toggle_minimize()
 
+
 # A function for toggling between MAX and MONADTALL layouts
 @lazy.function
 def maximize_by_switching_layout(qtile):
@@ -139,16 +140,12 @@ keys = [
 
     Key([mod], "u", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
-    Key([], "f1", lazy.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), lazy.widget["genpollcommand"].force_update(), desc="Handle the microphone"),
-    Key([], "f4", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 a2dp_sink"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the headset mode"),
-    Key([], "f5", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 handsfree_head_unit"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the microphone mode"),
+     # Key([], "f1", lazy.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), lazy.widget["genpollcommand"].force_update(), desc="Handle the microphone"),
+     # Key([], "f4", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 a2dp_sink"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the headset mode"),
+     # Key([], "f5", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 handsfree_head_unit"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the microphone mode"),
     
-    Key([alt], "space",
-        lazy.spawn("setxkbmap us"), 
-        desc= "Change to US layout"),
-    Key([alt], "i",
-        lazy.spawn("setxkbmap ir"), 
-        desc= "Change to FA layout"),
+    Key([alt], "space", lazy.spawn("setxkbmap us"), desc= ""),
+    Key([alt], "i", lazy.spawn("setxkbmap ir"), desc= ""),
 ]
 
 # GROUPS
@@ -229,7 +226,8 @@ colors = [
     ["#51afef", "#51afef"],
     ["#c678dd", "#c678dd"],
     ["#46d9ff", "#46d9ff"],
-    ["#a9a1e1", "#a9a1e1"]
+    ["#a9a1e1", "#a9a1e1"],
+    ["#1CEDFF", "#1CEDFF"]
 ]
 
 
@@ -272,6 +270,7 @@ def init_widgets_list():
                     padding = 2,
                     fontsize = 14
                 ),
+                widget.CurrentLayoutIcon(scale = 0.64, use_mask=True, foreground=colors[10]),
                 widget.Prompt(
                     prompt="COMMAND: ",
                     fontsize = 13,
@@ -297,7 +296,7 @@ def init_widgets_list():
                 widget.Memory(
                     font = "Oxanium SemiBold",
                     fontsize = 12.5,
-                    foreground = colors[8],
+                    foreground = colors[10],
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
                     format = "{MemUsed: .0f} out of{MemTotal: .0f} ({MemPercent}%)",
                 ),
@@ -311,13 +310,12 @@ def init_widgets_list():
                     font = "Oxanium SemiBold",
                     fontsize = 12.1,
                 ),
-                widget.Spacer(length = 4),
+                widget.Spacer(length = 6),
                 widget.GenPollCommand(
                     cmd = "/home/spectre/GitHub/dotfiles/scripts/check-microphone",
                     shell = True,
                     fmt='<i>{}</i>',
                     foreground = "#e30526",
-                    padding = 4
                 ),
                 widget.Clock(
                     font = "Oxanium Medium",
@@ -343,6 +341,8 @@ def init_widgets_list():
                     graph_color= colors[8],
                     padding = 2,
                 ),
+                widget.Spacer(length = 4),
+                widget.DoNotDisturb(disabled_icon="󰂵", enabled_icon="󰄻", fontsize=20, fmt="{} "),
         ]
     return widgets_list
 
