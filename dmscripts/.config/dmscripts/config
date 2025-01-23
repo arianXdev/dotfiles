@@ -20,13 +20,10 @@ FMENU="fzf --bind=enter:replace-query+print-query --border=rounded --margin=5% -
 PDF_VIEWER="zathura"
 
 DMBROWSER="brave"
-# DMBROWSER="qutebrowser"
 
-# DMTERM="st -e"
 DMTERM="alacritty -e"
 
-DMEDITOR="emacsclient -c -a emacs"
-# DMEDITOR="${DMTERM} vim"
+DMEDITOR="vim"
 
 # TODO: Rename this variable to something more traditional
 logout_locker='slock'
@@ -152,8 +149,6 @@ declare -ag reddit_list=(
 "r/archlinux"
 "r/bash"
 "r/commandline"
-"r/emacs"
-"r/freesoftware"
 "r/linux"
 "r/linux4noobs"
 "r/linuxmasterrace"
