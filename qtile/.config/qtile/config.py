@@ -320,7 +320,7 @@ def init_widgets_list():
                 widget.Clock(
                     font = "Oxanium Medium",
                     fontsize = 13,
-                    foreground = colors[0],
+                    foreground = "#000000",
                     format = "%H:%M %a, %B %d",
                     decorations=[
                      RectDecoration(
