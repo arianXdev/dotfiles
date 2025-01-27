@@ -9,7 +9,7 @@ bluez-tools
 bluez-utils
 brave-bin
 btop
-capitaine-cursors
+clamav
 clipmenu
 cmus
 colorpicker
@@ -91,6 +91,7 @@ smbclient
 smplayer
 smplayer-themes
 solaar
+st
 starship
 stow
 stunnel
