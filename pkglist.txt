@@ -85,6 +85,7 @@ qutebrowser
 reflector
 ripgrep
 rofi
+rust
 skypeforlinux-bin
 slock
 smbclient

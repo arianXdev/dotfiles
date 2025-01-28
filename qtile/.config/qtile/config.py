@@ -144,8 +144,8 @@ keys = [
      # Key([], "f4", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 a2dp_sink"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the headset mode"),
      # Key([], "f5", lazy.spawn("pactl set-card-profile bluez_card.14_2C_78_13_1D_14 handsfree_head_unit"), lazy.widget["genpollcommand"].force_update(), desc="Switch to the microphone mode"),
     
-    Key([alt], "space", lazy.spawn("setxkbmap us"), desc= ""),
-    Key([alt], "i", lazy.spawn("setxkbmap ir"), desc= ""),
+    Key([mod], "space", lazy.spawn("setxkbmap us"), desc= ""),
+    Key([mod], "i", lazy.spawn("setxkbmap ir"), desc= ""),
 ]
 
 # GROUPS
