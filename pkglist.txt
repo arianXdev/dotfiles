@@ -107,6 +107,7 @@ tor
 torbrowser-launcher
 torsocks
 trash-cli
+tree
 ttf-firacode-nerd
 ttf-joypixels
 ttf-ubuntu-font-family

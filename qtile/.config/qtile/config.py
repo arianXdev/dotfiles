@@ -60,7 +60,7 @@ def maximize_by_switching_layout(qtile):
 # KEYS
 keys = [
     # The essentials
-    Key([alt], "Return", lazy.spawn(myTerm), desc="Launch terminal"),
+    Key([alt], "Return", lazy.spawn(myTerm + " -e tmux"), desc="Launch terminal"),
     Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('yazi')),
     Key([mod], "b", lazy.spawn(myBrowser), desc='Brave Browser'),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),

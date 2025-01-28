@@ -67,6 +67,18 @@ source $ZSH/oh-my-zsh.sh
 
 
 # User configuration
+
+# Quick cd using fzf
+fcd() {
+  cd "$(find -type d | fzf --preview 'tree -C {} | head -200' --preview-window 'up:60%')"
+}
+
+# Find and edit using fzf
+fe() {
+  vim "$(find -type f | fzf --preview 'cat {}' --preview-window 'up:60%')"
+}
+
+
 alias cd="z"
 alias tornew="pidof tor | xargs sudo kill -HUP"
 alias ytdl="yt-dlp --proxy 'socks5://127.0.0.1:9150'"
