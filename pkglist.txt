@@ -54,6 +54,7 @@ maim
 man-db
 megasync-bin
 mesa-utils
+neovim
 networkmanager
 newsboat
 nitrogen
@@ -117,7 +118,6 @@ unrar
 unzip
 viewnior
 vim
-visual-studio-code-bin
 vulkan-mesa-layers
 vulkan-radeon
 wget

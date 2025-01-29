@@ -78,8 +78,7 @@ fe() {
   vim "$(find -type f | fzf --preview 'cat {}' --preview-window 'up:60%')"
 }
 
-
-alias cd="z"
+# alias cd="z"
 alias tornew="pidof tor | xargs sudo kill -HUP"
 alias ytdl="yt-dlp --proxy 'socks5://127.0.0.1:9150'"
 alias bl="bluetoothctl"
@@ -113,4 +112,4 @@ source <(fzf --zsh)
 ### SETTING THE STARSHIP PROMPT ###
 eval "$(starship init zsh)"
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
