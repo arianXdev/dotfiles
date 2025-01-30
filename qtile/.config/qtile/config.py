@@ -285,6 +285,8 @@ def init_widgets_list():
                 ),
                 widget.Cmus(noplay_color='#ff0011', font="Tektur Medium", fontsize=12.9, format='{play_icon}{artist} / {album} - {title}'),
                 widget.Spacer(length = 4),
+                widget.Pomodoro(),
+                widget.Spacer(length = 4),
                 widget.Volume(
                     font = "Oxanium SemiBold",
                     fontsize = 12.4,

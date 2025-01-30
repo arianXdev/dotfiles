@@ -67,6 +67,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 # User configuration
+alias vim="nvim"
 
 # Quick cd using fzf
 fcd() {
@@ -75,7 +76,7 @@ fcd() {
 
 # Find and edit using fzf
 fe() {
-  vim "$(find -type f | fzf --preview 'cat {}' --preview-window 'up:60%')"
+  nvim "$(find -type f | fzf --preview 'cat {}' --preview-window 'up:60%')"
 }
 
 # alias cd="z"
@@ -100,6 +101,8 @@ alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias jctl="journalctl -p 3 -xb"
 
 alias polkit-gnome="/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+
+alias t="tmux"
 
 # NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
