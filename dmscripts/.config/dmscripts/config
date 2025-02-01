@@ -23,11 +23,10 @@ DMBROWSER="brave"
 
 DMTERM="alacritty -e"
 
-DMEDITOR="vim"
+DMEDITOR="nvim"
 
 # TODO: Rename this variable to something more traditional
 logout_locker='slock'
-# logout_locker='dm-tool lock'
 
 # dmscripts will notify you if your configuration is outdated, to shut it up uncomment this.
 # comment it back out if you want dmscripts to nag at you 
