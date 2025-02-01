@@ -103,6 +103,7 @@ alias jctl="journalctl -p 3 -xb"
 alias polkit-gnome="/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 alias t="tmux"
+alias e="exit"
 
 # NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
