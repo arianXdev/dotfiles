@@ -1,4 +1,5 @@
 #!/bin/sh
+dbus-update-activation-environment --all &
 picom --daemon &
 sxhkd &
 nitrogen --restore &
@@ -9,6 +10,5 @@ conky -c ~/GitHub/my-conky-config/conky-right.lua & conky -c ~/GitHub/my-conky-c
 sleep 1 &
 
 clipmenud &
-tmux new -d -s default &
 
 kdeconnectd &
