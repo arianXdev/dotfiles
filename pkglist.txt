@@ -82,7 +82,6 @@ qt5ct
 qt6ct
 qtile
 qtile-extras
-qutebrowser
 reflector
 ripgrep
 rofi
