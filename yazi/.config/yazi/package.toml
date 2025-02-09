@@ -1,5 +1,22 @@
-[plugin]
-deps = [{ use = "yazi-rs/plugins:smart-enter", rev = "600614a" }, { use = "yazi-rs/plugins:full-border", rev = "600614a" }, { use = "Rolv-Apneseth/starship", rev = "af8bf6f" }]
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "0725851"
+hash = "aef2b1a805b80cce573bb766f1459d88"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "0725851"
+hash = "ae9e1d0c6bfd68cdebc98cc684c22b45"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "d1cd0a3"
+hash = "d1fee6d0f74cb52d4e031dc6b9207f31"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "0725851"
+hash = "b80e65240c1d0651e87d0200522bb079"
 
 [flavor]
 deps = []
