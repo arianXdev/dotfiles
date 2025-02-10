@@ -30,7 +30,6 @@ flameshot
 genact
 git
 github-cli
-gksu
 gnome-keyring
 grub
 gvfs
