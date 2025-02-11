@@ -91,7 +91,6 @@ smbclient
 smplayer
 smplayer-themes
 solaar
-st
 starship
 stow
 stunnel

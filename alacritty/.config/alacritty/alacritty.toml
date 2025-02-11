@@ -17,10 +17,6 @@ bold = { family = "Operator Mono", style = "Bold" }
 italic = { family = "Operator Mono", style = "Book Italic" }
 bold_italic = { family = "Operator Mono", style = "Bold Italic" }
 
-[window.dimensions]
-columns = 140
-lines = 27
-
 [window.padding]
 x = 17
 y = 17

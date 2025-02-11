@@ -102,6 +102,7 @@ alias jctl="journalctl -p 3 -xb"
 
 alias polkit-gnome="/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
+alias gs="git status"
 alias t="tmux"
 alias e="exit"
 
