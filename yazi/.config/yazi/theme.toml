@@ -75,10 +75,9 @@ unset_alt  = { fg = "red", bg = "gray" }
 # : Status bar {{{
 
 [status]
-# separator_open  = ""
-# separator_close = ""
-separator_open  = ""
-separator_close = ""
+overall   = {}
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
 
 # Progress
 progress_label  = { bold = true }
@@ -132,7 +131,7 @@ btn_labels = [ "  [Y]es  ", "  (N)o  " ]
 
 # : Completion {{{
 
-[completion]
+[cmp]
 border   = { fg = "blue" }
 active   = { reversed = true }
 inactive = {}

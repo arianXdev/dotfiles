@@ -40,7 +40,6 @@ id3v2
 intel-ucode
 irssi
 kdeconnect
-krusader
 kvantum
 kvantum-qt5
 lazygit
@@ -83,6 +82,7 @@ qtile
 qtile-extras
 reflector
 ripgrep
+ripgrep-all
 rofi
 rust
 skypeforlinux-bin
@@ -131,5 +131,6 @@ xorg-xinit
 yazi
 zathura
 zathura-pdf-mupdf
+zen-browser-bin
 zoxide
 zsh
