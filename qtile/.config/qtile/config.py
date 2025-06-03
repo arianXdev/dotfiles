@@ -450,13 +450,19 @@ def start_once():
 
 @hook.subscribe.client_new
 def display_apps_in_certain_groups(window):
-    if window.name == "Visual Studio Code":
-        window.togroup("3")
-    elif window.name == "cmus":
-        window.togroup("5")
-    elif window.name == "Skype":
+    wm_class = window.window.get_wm_class()
+    if not wm_class:
+        return
+
+    if "teams-for-linux" in wm_class:
         window.togroup("7")
-    elif window.name == "Windscribe":
+    elif "brave-browser" in wm_class:
+        window.togroup("4")
+    elif "Windscribe" in wm_class:
         window.togroup("9")
-    elif window.name == "MEGAsync":
+    elif "megasync" in wm_class:
         window.togroup("6")
+    elif "telegram-desktop" in wm_class:
+        window.togroup("7")
+    elif "thunderbird" in wm_class:
+        window.togroup("1")
