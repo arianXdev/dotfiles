@@ -11,11 +11,9 @@ brave-bin
 btop
 clamav
 clipmenu
-cmake
 cmus
 colorpicker
 conky
-cppdap
 cpu-x-git
 cups
 cyme
@@ -41,7 +39,6 @@ hplip
 id3v2
 intel-ucode
 irssi
-jsoncpp
 kdeconnect
 kvantum
 kvantum-qt5
@@ -55,15 +52,12 @@ maim
 man-db
 megasync-bin
 mesa-utils
-nasm
 neovim
 networkmanager
 newsboat
-ninja
 nitrogen
 ntfs-3g
 oneshot-bin
-opencl-headers
 pamixer
 pandoc-bin
 paru-bin
@@ -86,8 +80,8 @@ qt5ct
 qt6ct
 qtile
 qtile-extras
+redshift
 reflector
-rhash
 ripgrep
 ripgrep-all
 rofi
@@ -122,7 +116,6 @@ unrar
 unzip
 viewnior
 vim
-vulkan-headers
 vulkan-mesa-layers
 vulkan-radeon
 wget
