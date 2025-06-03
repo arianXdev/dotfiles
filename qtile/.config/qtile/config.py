@@ -316,13 +316,15 @@ def init_widgets_list():
             font="Oxanium SemiBold",
             fontsize=12.1,
         ),
-        widget.Spacer(length=6),
+        widget.Spacer(length=4),
         widget.GenPollCommand(
             cmd="/home/spectre/GitHub/dotfiles/scripts/check-microphone",
             shell=True,
             fmt="<i>{}</i>",
             foreground="#e30526",
         ),
+        widget.TextBox(text="|", font="Ubuntu Mono", foreground=colors[6], padding=2, fontsize=14),
+        widget.Spacer(length=4),
         widget.Clock(
             font="Oxanium Medium",
             fontsize=13,
@@ -331,6 +333,7 @@ def init_widgets_list():
             decorations=[RectDecoration(filled=True, colour=colors[3], radius=6, padding_y=4)],
         ),
         widget.Spacer(length=4),
+        widget.TextBox(text="|", font="Ubuntu Mono", foreground=colors[6], padding=2, fontsize=14),
         widget.Systray(icon_size=18),
         widget.Spacer(length=4),
         widget.CPUGraph(
@@ -347,7 +350,7 @@ def init_widgets_list():
             enabled_txt="󱁝",
             fontsize=17,
             padding=6,
-            temperature=3000,
+            temperature=3500,
         ),
         widget.Spacer(length=4),
         widget.DoNotDisturb(disabled_icon="󰂵", enabled_icon="󰄻", fontsize=20, fmt="{} "),
