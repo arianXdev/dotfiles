@@ -3,7 +3,7 @@ Description=tmux session
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/tmux new-session -d -s default
+ExecStart=/usr/bin/tmux new-session -f ~/.config/tmux/tmux.conf -d -s default
 ExecStop=/usr/bin/tmux kill-server 
 
 [Install]

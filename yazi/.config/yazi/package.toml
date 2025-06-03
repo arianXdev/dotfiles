@@ -1,22 +1,22 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "5186af7"
-hash = "aef2b1a805b80cce573bb766f1459d88"
+rev = "63f9650"
+hash = "a7ab702e1ef0c097defbc976ed34c186"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "5186af7"
-hash = "ae9e1d0c6bfd68cdebc98cc684c22b45"
+rev = "63f9650"
+hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "6c639b4"
-hash = "5614c46d5de76623c283d415bfac8025"
+rev = "6a0f3f7"
+hash = "d5a74d95c2e8194ac352c5e10e81e64f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "5186af7"
-hash = "5c4d8080367dd2561a18c1cf5a1dd295"
+rev = "63f9650"
+hash = "c0b6cd7dc830b96e77e5c8a71eec7926"
 
 [flavor]
 deps = []
