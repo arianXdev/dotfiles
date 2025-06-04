@@ -52,6 +52,7 @@ maim
 man-db
 megasync-bin
 mesa-utils
+ncdu
 neovim
 networkmanager
 newsboat

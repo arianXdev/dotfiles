@@ -102,7 +102,7 @@
     frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#007efc"
+    frame_color = "#FB3048"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -170,7 +170,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "<b>%s</b>\n%b. Commander!"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".

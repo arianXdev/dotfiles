@@ -422,12 +422,10 @@ floating_layout = layout.Floating(
         Match(wm_class="pavucontrol"),
         Match(wm_class="anydesk"),
         Match(wm_class="lxappearance"),
-        Match(wm_class="skype"),
         Match(wm_class="feh"),
         Match(wm_class="viewnior"),
         Match(wm_class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn"),  # MetaMask Notification
         Match(wm_class="btop"),
-        Match(wm_class="localsend"),
         Match(wm_class="flameshot"),
         Match(wm_class="MEGAsync"),
     ],
