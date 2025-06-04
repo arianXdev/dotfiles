@@ -1,34 +1,33 @@
-#zoom
 set zoom-step 5
-map <C-n> zoom out
-map <C-m> zoom in
 
-#clipboard
 set selection-clipboard clipboard
-
 set incremental-search "true"
-
-set font "Tektur"
-
+set font "Tektur 13"
 set adjust-open "width"
-
 set window-title-basename "true"
-
 set statusbar-basename "true"
-
 set guioptions none
 
 # colors
-
 set default-bg "#e5e9e6"
 set default-fg "#130912"
-set recolor-darkcolor "#de524a"
+set recolor-darkcolor "#FB3048"
 set recolor-lightcolor "#130912"
-set highlight-color "#55e7f0"
-set highlight-active-color "#de524a"
+set highlight-color "#1CEDFF"
+set highlight-active-color "#FB3048"
 set inputbar-bg "#130912"
-set inputbar-fg "#de524a"
+set inputbar-fg "#FB3048"
 
-set recolor false
+set statusbar-fg "#1CEDFF"
+set statusbar-bg "#130912"
+
+set completion-highlight-fg "#130912"
+set completion-highlight-bg "#FB3048"
+
+set recolor-lightcolor "#000000"
+set recolor-darkcolor "#E0E0E0"
+set recolor-reverse-video "true"
+set recolor-keephue "true"
+
 map i recolor
-map <C-Space> toggle_statusbar
+map <C-g> toggle_statusbar
