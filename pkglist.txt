@@ -28,6 +28,7 @@ feh
 filezilla
 flameshot
 genact
+gifsicle
 git
 github-cli
 gnome-keyring
@@ -42,7 +43,6 @@ irssi
 kdeconnect
 kvantum
 kvantum-qt5
-lazygit
 lemurs
 linux
 linux-firmware
@@ -77,6 +77,7 @@ pulsemixer
 python-psutil
 python-setuptools
 qalculate-qt
+qdiskinfo-bin
 qt5ct
 qt6ct
 qtile
@@ -115,6 +116,7 @@ udiskie
 ufw
 unrar
 unzip
+ventoy-bin
 viewnior
 vim
 vulkan-mesa-layers
@@ -130,6 +132,7 @@ xorg-server
 xorg-xdpyinfo
 xorg-xev
 xorg-xinit
+xwinwrap-mmhobi7-git
 yazi
 zathura
 zathura-pdf-mupdf

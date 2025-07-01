@@ -350,6 +350,7 @@ def init_widgets_list():
             enabled_txt="󱁝",
             fontsize=17,
             padding=6,
+            font="Oxanium",
             temperature=3500,
         ),
         widget.Spacer(length=4),
@@ -472,7 +473,7 @@ def display_apps_in_certain_groups(window):
         window.togroup("9")
     elif "megasync" in wm_class:
         window.togroup("6")
-    elif "telegram-desktop" in wm_class:
+    elif "Telegram" in wm_class:
         window.togroup("7")
     elif "thunderbird" in wm_class:
         window.togroup("1")
