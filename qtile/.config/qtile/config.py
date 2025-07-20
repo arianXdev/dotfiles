@@ -429,6 +429,7 @@ floating_layout = layout.Floating(
         Match(wm_class="btop"),
         Match(wm_class="flameshot"),
         Match(wm_class="MEGAsync"),
+        Match(wm_class="qv2ray"),
     ],
 )
 auto_fullscreen = True
@@ -477,3 +478,5 @@ def display_apps_in_certain_groups(window):
         window.togroup("7")
     elif "thunderbird" in wm_class:
         window.togroup("1")
+    elif "qv2ray" in wm_class:
+        window.togroup("9")
