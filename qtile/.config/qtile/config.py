@@ -79,6 +79,7 @@ keys = [
             Key([], "1", lazy.group["scratchpad"].dropdown_toggle("term")),
             Key([], "2", lazy.group["scratchpad"].dropdown_toggle("term-2")),
             Key([], "3", lazy.group["scratchpad"].dropdown_toggle("term-3")),
+            Key([], "4", lazy.group["scratchpad"].dropdown_toggle("term-4")),
         ],
     ),
     # Switch between windows
@@ -199,6 +200,7 @@ groups.append(
             DropDown("term", "alacritty --class=scratch", width=0.8, height=0.5, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
             DropDown("term-2", "alacritty --class=scratch -e tmux a", width=0.8, height=0.6, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
             DropDown("term-3", "alacritty --class=scratch", width=0.8, height=0.5, x=0.1, y=0.1, opacity=0.98, on_focus_lost_hide=False),
+            DropDown("term-4", "alacritty --class=scratch", width=0.8, height=0.5, x=0.1, y=0.2, opacity=0.95, on_focus_lost_hide=False),
             DropDown("yazi", "alacritty --class=yazi -e yazi", width=0.8, height=0.58, x=0.1, y=0.1, opacity=1, on_focus_lost_hide=False),
             DropDown("volume", "alacritty --class=pulsemixer -e pulsemixer", width=0.6, height=0.4, x=0.2, y=0.2, opacity=1, on_focus_lost_hide=True),
         ],

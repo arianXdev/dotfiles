@@ -1,5 +1,6 @@
 7zip
 alacritty
+anydesk-bin
 base
 base-devel
 bat
@@ -16,6 +17,7 @@ colorpicker
 conky
 cpu-x-git
 cups
+cursor-bin
 cyme
 dmscripts-git
 docker
@@ -36,10 +38,12 @@ github-cli
 gnome-keyring
 grub
 gvfs
+gvfs-afc
 gvfs-mtp
 gvfs-smb
 hplip
 id3v2
+ifuse
 intel-ucode
 irssi
 kdeconnect
@@ -68,6 +72,7 @@ paru-bin
 paru-bin-debug
 paru-debug
 pcmanfm-qt
+persepolis
 picom
 pkgstats
 polkit-gnome
@@ -131,6 +136,7 @@ vulkan-mesa-layers
 vulkan-radeon
 wget
 windscribe-v2-bin
+windsurf
 xclip
 xdg-dbus-proxy
 xdg-user-dirs
@@ -140,7 +146,6 @@ xorg-server
 xorg-xdpyinfo
 xorg-xev
 xorg-xinit
-xray-bin
 xwinwrap-mmhobi7-git
 yazi
 zathura
