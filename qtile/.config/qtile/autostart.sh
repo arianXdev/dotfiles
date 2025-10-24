@@ -9,7 +9,6 @@ conky -c ~/GitHub/my-conky-config/conky-right.lua & conky -c ~/GitHub/my-conky-c
 
 sleep 1 &
 clipmenud &
-kdeconnectd &
 
 sleep 3 && xwinwrap -g 202x203+1630+730 -ov -ni -s -nf -b -un -argb -- gifview -w WID .conky-hud-1.gif -a &
 # sleep 3 && xwinwrap -g 235x229+595+270 -ov -ni -s -nf -b -un -argb -- gifview -w WID .conky-hud-2.gif -a &

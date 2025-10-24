@@ -1,6 +1,7 @@
 export XDG_SESSION_TYPE=x11
 export TERMINAL="alacritty"
 export CONKY_PATH="~/GitHub/my-conky-config"
+export DMENU_PATH="/usr/bin"
 
 # Default Apps
 export EDITOR="nvim"

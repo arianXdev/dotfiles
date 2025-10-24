@@ -37,7 +37,7 @@ from qtile_extras.widget.decorations import RectDecoration
 mod = "mod4"
 alt = "mod1"
 myTerm = "alacritty"
-myBrowser = "brave"
+myBrowser = "helium-browser"
 
 
 # A function for hide/show all the windows in a group

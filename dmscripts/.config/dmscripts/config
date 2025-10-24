@@ -17,7 +17,7 @@ FMENU="fzf --bind=enter:replace-query+print-query --border=rounded --margin=5% -
 
 ## DEFAULT PROGRAMS
 PDF_VIEWER="zathura"
-DMBROWSER="brave"
+DMBROWSER="helium-browser"
 DMTERM="alacritty -e"
 DMEDITOR="nvim"
 # DMEDITOR="${DMTERM} vim"
