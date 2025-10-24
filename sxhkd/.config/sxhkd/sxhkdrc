@@ -50,6 +50,9 @@ super + s; {_,alt + } t
 super + s; {_,alt + } c
     {windscribe-cli connect, windscribe-cli disconnect}
 
+super + c
+    /opt/helium-browser-bin/chrome-wrapper --profile-directory=Default --app-id=cadlkienfkclaiaibeoongdcgmdikeeg
+
 # Sound control
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle
