@@ -13,7 +13,7 @@ set default-bg "#e5e9e6"
 set default-fg "#130912"
 set recolor-darkcolor "#FB3048"
 set recolor-lightcolor "#130912"
-set highlight-color "#1CEDFF"
+set highlight-color "rgba(28,237,255,0.5)"
 set highlight-active-color "#FB3048"
 set inputbar-bg "#130912"
 set inputbar-fg "#FB3048"
@@ -28,6 +28,8 @@ set recolor-lightcolor "#000000"
 set recolor-darkcolor "#E0E0E0"
 set recolor-reverse-video "true"
 set recolor-keephue "true"
+
+set selection-notification "false"
 
 map i recolor
 map <C-g> toggle_statusbar
