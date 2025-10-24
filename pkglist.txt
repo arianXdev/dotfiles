@@ -1,6 +1,6 @@
 7zip
 alacritty
-anydesk-bin
+archiso
 base
 base-devel
 bat
@@ -8,14 +8,11 @@ bluez
 bluez-libs
 bluez-tools
 bluez-utils
-brave-bin
 btop
-clamav
 clipmenu
 cmus
 colorpicker
 conky
-cpu-x-git
 cups
 cursor-bin
 cyme
@@ -25,6 +22,7 @@ dosfstools
 dotnet-sdk
 downgrade
 dunst
+etcher-bin
 fastfetch
 fd
 feh
@@ -41,6 +39,7 @@ gvfs
 gvfs-afc
 gvfs-mtp
 gvfs-smb
+helium-browser-bin
 hplip
 id3v2
 ifuse
@@ -51,7 +50,6 @@ krdc
 kvantum
 kvantum-qt5
 lemurs
-linux
 linux-firmware
 linux-zen
 lxappearance
@@ -90,20 +88,18 @@ qt5ct
 qt6ct
 qtile
 qtile-extras
-qv2ray
-qv2ray-debug
 redshift
 reflector
 ripgrep
 ripgrep-all
 rofi
 rust
+rustdesk-bin
 seahorse
 slock
 smbclient
 smplayer
 smplayer-themes
-solaar
 starship
 stow
 stunnel
@@ -118,6 +114,7 @@ tmux
 tor
 torbrowser-launcher
 torsocks
+transmission-qt
 trash-cli
 tree
 ttf-firacode-nerd
