@@ -66,6 +66,12 @@ export KEYTIMEOUT=1
 source $ZSH/oh-my-zsh.sh
 
 
+# File System
+alias ls='eza -lh --group-directories-first --icons=auto'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt'
+
 # User configuration
 alias vim="nvim"
 

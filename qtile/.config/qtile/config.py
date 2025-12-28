@@ -218,7 +218,10 @@ layouts = [
         ratio=0.335,
     ),
     layout.MonadTall(**layout_theme),
-    layout.Max(**layout_theme),
+    layout.Max(
+        margin=0,
+        border_width=0,
+    ),
     layout.Floating(**layout_theme),
     layout.Columns(
         border_normal="777777",
@@ -263,7 +266,7 @@ def init_widgets_list():
             borderwidth=3,
             active=colors[2],
             block_highlight_text_color=colors[3],
-            inactive=colors[6],
+            inactive=colors[10],
             rounded=False,
             highlight_color=colors[1],
             highlight_method="line",
@@ -291,7 +294,6 @@ def init_widgets_list():
         ),
         widget.Cmus(noplay_color="#ff0011", font="Tektur Medium", fontsize=12.9, format="{play_icon}{artist} / {album} - {title}"),
         widget.Spacer(length=4),
-        widget.Pomodoro(),
         widget.Spacer(length=4),
         widget.Volume(
             font="Oxanium SemiBold",
@@ -345,6 +347,11 @@ def init_widgets_list():
             graph_color=colors[8],
             padding=2,
         ),
+        widget.NetGraph(
+            border_width=0,
+            fill_color=colors[3],
+            graph_color=colors[8],
+        ),
         widget.Spacer(length=4),
         widget.Redshift(
             # disabled_txt="󱄼",
@@ -356,7 +363,7 @@ def init_widgets_list():
             temperature=3500,
         ),
         widget.Spacer(length=4),
-        widget.DoNotDisturb(disabled_icon="󰂵", enabled_icon="󰄻", fontsize=20, fmt="{} "),
+        widget.DoNotDisturb(disabled_icon="🇺🇸", enabled_icon="󰄻", fontsize=20, fmt="{} "),
     ]
     return widgets_list
 
@@ -431,7 +438,6 @@ floating_layout = layout.Floating(
         Match(wm_class="btop"),
         Match(wm_class="flameshot"),
         Match(wm_class="MEGAsync"),
-        Match(wm_class="qv2ray"),
     ],
 )
 auto_fullscreen = True
@@ -470,8 +476,6 @@ def display_apps_in_certain_groups(window):
 
     if "teams-for-linux" in wm_class:
         window.togroup("7")
-    elif "brave-browser" in wm_class:
-        window.togroup("4")
     elif "Windscribe" in wm_class:
         window.togroup("9")
     elif "megasync" in wm_class:
@@ -480,5 +484,65 @@ def display_apps_in_certain_groups(window):
         window.togroup("7")
     elif "thunderbird" in wm_class:
         window.togroup("1")
-    elif "qv2ray" in wm_class:
-        window.togroup("9")
+
+
+# TOR BROWSER BORDER HOOKS
+def update_tor_borders(window):
+    try:
+        if not window:
+            return
+        
+        # Identify Tor Browser
+        # wm_class is typically a list, e.g., ['Navigator', 'Tor Browser']
+        wm_class = window.window.get_wm_class()
+        is_tor = False
+        if wm_class:
+            for c in wm_class:
+                if "Tor Browser" in c:
+                    is_tor = True
+                    break
+        
+        if not is_tor:
+            if window.name and "Tor Browser" in window.name:
+                is_tor = True
+        
+        if not is_tor:
+            return
+
+        should_paint = False
+        
+        # Check floating
+        if window.floating:
+            should_paint = True
+
+        if should_paint:
+            try:
+                window.paint_borders(color="#9119CC", width=2)
+            except:
+                # Fallback if paint_borders kwargs fail
+                window.paint_borders("#9119CC", 2)
+            
+    except Exception:
+        pass
+
+@hook.subscribe.float_change
+def float_change():
+    if qtile.current_group:
+        for win in qtile.current_group.windows:
+            update_tor_borders(win)
+
+@hook.subscribe.layout_change
+def layout_change(layout, group):
+    if group:
+        for win in group.windows:
+            update_tor_borders(win)
+
+@hook.subscribe.client_new
+def client_new_tor(window):
+    update_tor_borders(window)
+
+@hook.subscribe.client_focus
+def client_focus_tor(window):
+    update_tor_borders(window)
+
+

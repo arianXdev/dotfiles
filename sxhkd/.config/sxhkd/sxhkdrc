@@ -11,8 +11,8 @@ super + {r,w}
     {rofi -show drun, rofi -show window}
 
 # Lock the screen using slock
-super + l
-    slock
+# super + l
+#     slock
 
 super + Return
     alacritty -e tmux a
@@ -50,8 +50,17 @@ super + s; {_,alt + } t
 super + s; {_,alt + } c
     {windscribe-cli connect, windscribe-cli disconnect}
 
+
+# AIs
+super + g
+    /opt/helium-browser-bin/chrome-wrapper --profile-directory=Default --app="https://gemini.google.com/" &
+
 super + c
-    /opt/helium-browser-bin/chrome-wrapper --profile-directory=Default --app-id=cadlkienfkclaiaibeoongdcgmdikeeg
+    /opt/helium-browser-bin/chrome-wrapper --profile-directory=Default --app="https://chatgpt.com/" &
+
+super + a; l
+    /opt/helium-browser-bin/chrome-wrapper --profile-directory=Default --app="https://claude.ai/" &
+
 
 # Sound control
 XF86AudioMute
@@ -68,3 +77,11 @@ F7
 
 F8
     pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+
+# Network Manager
+F1
+    nmcli device disconnect enp2s0 >/dev/null 2>&1 && notify-send --expire-time=2000 "INTERFACE enp2s0" "DISCONNECTED!" || notify-send "enp2s0" "DISCONNECT FAILED!"
+
+F2
+    nmcli device connect enp2s0 >/dev/null 2>&1 && notify-send --expire-time=2000 "INTERFACE enp2s0" "CONNECTED." || notify-send "enp2s0" "CONNECT FAILED!"

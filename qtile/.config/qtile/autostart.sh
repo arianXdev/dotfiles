@@ -12,3 +12,6 @@ clipmenud &
 
 sleep 3 && xwinwrap -g 202x203+1630+730 -ov -ni -s -nf -b -un -argb -- gifview -w WID .conky-hud-1.gif -a &
 # sleep 3 && xwinwrap -g 235x229+595+270 -ov -ni -s -nf -b -un -argb -- gifview -w WID .conky-hud-2.gif -a &
+
+setxkbmap -option caps:escape &
+xset r rate 300 50 &
