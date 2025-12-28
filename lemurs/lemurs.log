@@ -1,0 +1,10 @@
+[2025-12-21T18:20:13Z INFO  lemurs] Main lemurs logger is running
+[2025-12-21T18:20:13Z INFO  lemurs] UI booted up
+[2025-12-21T18:20:13Z INFO  lemurs::post_login] Added environment 'Qtile' from xsessions
+[2025-12-21T18:20:13Z INFO  lemurs::post_login] Added environment 'Qtile (Wayland)' from wayland sessions
+[2025-12-21T18:20:13Z WARN  lemurs::post_login] 'xinitrc' is not executable and therefore not added as an environment
+[2025-12-21T18:20:13Z INFO  lemurs::info_caching] Attempting to get a cached information from '/var/cache/lemurs'
+[2025-12-21T18:20:13Z INFO  lemurs::info_caching] Read cache file and found environment 'spectre' and username 'None'
+[2025-12-21T18:20:19Z INFO  lemurs::ui] Pressed escape in preview mode to exit the application
+[2025-12-21T18:20:19Z INFO  lemurs] Reset terminal environment
+[2025-12-21T18:20:19Z INFO  lemurs] Lemurs is booting down

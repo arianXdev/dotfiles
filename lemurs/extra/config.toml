@@ -41,12 +41,9 @@
 # The tty which contains lemurs. This has to be mirrored in the lemurs.service
 tty = 2
 
-# The value of the `DISPLAY` environment variable for X11 sessions
-x11_display = ":1"
-
-# How many seconds to give the X server to start. To make it infinitely, put it
-# to 0.
-xserver_timeout_secs = 60
+# Delay in milliseconds after successful login to display the HUD greeting
+# This allows you to appreciate the "Welcome back, sir!" splash.
+login_delay_ms = 13000
 
 # Where to log the main lemurs control flow.
 main_log_path = "/var/log/lemurs.log"
@@ -55,14 +52,22 @@ main_log_path = "/var/log/lemurs.log"
 # Window Manager for Xorg, the Compositor for Wayland and the Shell for TTY.
 client_log_path = "/var/log/lemurs.client.log"
 
-# Where to log to for the XServer.
-xserver_log_path = "/var/log/lemurs.xorg.log"
+# At which point to point the cache. If you want to disable the cache globally
+# you can use `/dev/null`.
+cache_path = "/var/cache/lemurs"
 
 # Disable all logging. This is overwritten by the `--no-log` flag.
 do_log = true
 
 # The PAM service that should be used to login
 pam_service = "lemurs"
+
+# Path to system shell that gets used to execute linux commands. In almost all
+# cases, this should refer to a bash shell.
+system_shell = "/bin/sh"
+
+# Initial state of the `PATH` environment variable.
+initial_path = "/usr/local/sbin:/usr/local/bin:/usr/bin"
 
 # The type flag that will be appended to the shell that calls the session
 # environment. This may depend on your shell. Options:
@@ -89,45 +94,65 @@ show_background = true
 
 [background.style]
 # Allow to set the default background color for the login shell
-color = "black"
-# Settings for the background block's borders
+color = "#0A0A0A"
+# Settings for the background block's borders - DISABLED for Terminus font compatibility
 show_border = false
-border_color = "cyan"
+border_color = "#1CEDFF"
+green_color = "green"
 
 [power_controls]
-# Allow for the shutdown option to be used
-allow_shutdown = true
-# The text in the top-left to display how to shutdown. The text '%key%' will be
-# replaced with the shutdown_key.
-shutdown_hint = "Shutdown %key%"
+# The margin between hints
+hint_margin = 2
+
+# There are no additional entries by default
+entries = []
+
+# Example
+# Reboot to another os option
+#[[power_controls.entries]]
+## The text in the top-left to display how to reboot.
+#hint = "Reboot to OS"
+#
+## The color and modifiers of the hint in the top-left corner
+#hint_color = "dark gray"
+#hint_modifiers = ""
+#
+## The key used to reboot. Possibilities are F1 to F12.
+#key = "F3"
+## The command that is executed when the key is pressed
+#cmd = "efibootmgr -n0 && systemctl reboot -l"
+
+
+# If you want to remove the base_entries
+# base_entries = []
+
+# Shutdown option
+[[power_controls.base_entries]]
+# The text in the top-left to display how to shutdown.
+hint = "[POWER OFF]"
 
 # The color and modifiers of the hint in the top-left corner
-shutdown_hint_color = "dark gray"
-shutdown_hint_modifiers = ""
+hint_color = "#FF3333"
+hint_modifiers = "bold"
 
 # The key used to shutdown. Possibilities are F1 to F12.
-shutdown_key = "F1"
+key = "F1"
 # The command that is executed when the key is pressed
-shutdown_cmd = "systemctl poweroff -l"
+cmd = "systemctl poweroff -l"
 
-# Allow for the reboot option to be used
-allow_reboot = true
-
-# The text in the top-left to display how to reboot. The text '%key%' will be
-# replaced with the shutdown_key.
-reboot_hint = "Reboot %key%"
+# Reboot option
+[[power_controls.base_entries]]
+# The text in the top-left to display how to reboot.
+hint = "[REBOOT]"
 
 # The color and modifiers of the hint in the top-left corner
-reboot_hint_color = "dark gray"
-reboot_hint_modifiers = ""
+hint_color = "#FF3333"
+hint_modifiers = "bold"
 
 # The key used to reboot. Possibilities are F1 to F12.
-reboot_key = "F2"
+key = "F2"
 # The command that is executed when the key is pressed
-reboot_cmd = "systemctl reboot -l"
-
-# The margin between the shutdown and reboot hints
-hint_margin = 2
+cmd = "systemctl reboot -l"
 
 # Setting for the selector of the desktop environment you are using.
 [environment_switcher]
@@ -175,14 +200,14 @@ include_tty_shell = false
 remember = false
 
 # Enables showing the movers
-show_movers = false
+show_movers = true
 
 # Mover's color and modifiers whilst the selector is unfocused
 mover_color = "dark gray" 
 mover_modifiers = ""
 
 # Mover's color and modifiers whilst the selector is focused
-mover_color_focused = "red"
+mover_color_focused = "orange"
 mover_modifiers_focused = "bold" 
 
 # The characters used to display the movers. Suggestions are:
@@ -238,28 +263,28 @@ no_envs_modifiers_focused = ""
 [username_field]
 
 # Remember the username for the next time after a successful login attempt.
-remember = false
+remember = true
 
 [username_field.style]
 # Enables showing a title
 show_title = true
 # The text used within the title
-title = "Login"
+title = "> OPERATOR ID"
 
 # The title's color and modifiers whilst the username field is unfocused
-title_color = "white"
-content_color = "white"
+title_color = "#666666"
+content_color = "#999999"
 
 # The title's color and modifiers whilst the username field is focused
-title_color_focused = "light cyan"
-content_color_focused = "#1AE9FF"
+title_color_focused = "#1CEDFF"
+content_color_focused = "#1CEDFF"
 
-# Enables showing the borders
-show_border = true
+# Enables showing the borders - DISABLED for Terminus font compatibility
+show_border = false
 # The borders' color and modifiers whilst the username field is unfocused
-border_color = "cyan"
+border_color = "#333333"
 # The borders' color and modifiers whilst the username field is focused
-border_color_focused = "cyan"
+border_color_focused = "#1CEDFF"
 
 # Constrain the width of the username field
 use_max_width = true
@@ -277,24 +302,59 @@ content_replacement_character = "*"
 # Enables showing a title
 show_title = true
 # The text used within the title
-title = "Password"
+title = "> ACCESS CODE"
 
 # The title's color and modifiers whilst the password field is unfocused
-title_color = "white"
-content_color = "white"
+title_color = "#666666"
+content_color = "#999999"
 
 # The title's color and modifiers whilst the password field is focused
-title_color_focused = "light red"
-content_color_focused = "light red"
+title_color_focused = "#1CEDFF"
+content_color_focused = "#1CEDFF"
 
-# Enables showing the borders
-show_border = true
-# The borders' color and modifiers whilst the username field is unfocused
-border_color = "white"
-# The borders' color and modifiers whilst the username field is focused
-border_color_focused = "red"
+# Enables showing the borders - DISABLED for Terminus font compatibility
+show_border = false
+# The borders' color and modifiers whilst the password field is unfocused
+border_color = "#333333"
+# The borders' color and modifiers whilst the password field is focused
+border_color_focused = "#1CEDFF"
 
 # Constrain the width of the password field
 use_max_width = true
 # The contraint of the password field's width
 max_width = 48
+
+[x11]
+# Where to log to for the XServer.
+xserver_log_path = "/var/log/lemurs.xorg.log"
+
+# The value of the `DISPLAY` environment variable for X11 sessions
+x11_display = ":1"
+
+# How many seconds to give the X server to start. To make it infinitely, put it
+# to 0.
+xserver_timeout_secs = 60
+
+# Where to find the X11 server binary
+xserver_path = "/usr/bin/X"
+
+# Where to find the X11 xauth binary
+xauth_path = "/usr/bin/xauth"
+
+# Path to the directory where the startup scripts for the X11 sessions are found
+scripts_path = "/etc/lemurs/wms"
+
+# Path to the xsetup script that is needed for the environment setup of the
+# window manager.
+xsetup_path = "/etc/lemurs/xsetup.sh"
+
+# The directory to use for desktop entries X11 sessions.
+xsessions_path = "/usr/share/xsessions"
+
+[wayland]
+# Path to the directory where the startup scripts for the Wayland sessions are
+# found
+scripts_path = "/etc/lemurs/wayland"
+
+# The directory to use for desktop entries wayland sessions.
+wayland_sessions_path = "/usr/share/wayland-sessions"
