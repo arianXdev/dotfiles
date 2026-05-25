@@ -218,10 +218,7 @@ layouts = [
         ratio=0.335,
     ),
     layout.MonadTall(**layout_theme),
-    layout.Max(
-        margin=0,
-        border_width=0,
-    ),
+    layout.Max(**layout_theme),
     layout.Floating(**layout_theme),
     layout.Columns(
         border_normal="777777",
@@ -292,7 +289,7 @@ def init_widgets_list():
             max_chars=40,
             font="Oxanium SemiBold",
         ),
-        widget.Cmus(noplay_color="#ff0011", font="Tektur Medium", fontsize=12.9, format="{play_icon}{artist} / {album} - {title}"),
+        # widget.Cmus(noplay_color="#ff0011", font="Tektur Medium", fontsize=12.9, format="{play_icon}{artist} / {album} - {title}"),
         widget.Spacer(length=4),
         widget.Spacer(length=4),
         widget.Volume(

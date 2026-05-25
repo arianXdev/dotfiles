@@ -53,13 +53,13 @@ super + s; {_,alt + } c
 
 # AIs
 super + g
-    /opt/helium-browser-bin/chrome-wrapper --profile-directory=Default --app="https://gemini.google.com/" &
+    helium-browser --profile-directory=Default --app="https://gemini.google.com/" &
 
 super + c
-    /opt/helium-browser-bin/chrome-wrapper --profile-directory=Default --app="https://chatgpt.com/" &
+    helium-browser --profile-directory=Default --app="https://chatgpt.com/" &
 
 super + a; l
-    /opt/helium-browser-bin/chrome-wrapper --profile-directory=Default --app="https://claude.ai/" &
+    helium-browser --profile-directory=Default --app="https://claude.ai/" &
 
 
 # Sound control

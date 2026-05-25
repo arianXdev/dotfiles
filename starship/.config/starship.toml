@@ -1,5 +1,7 @@
+scan_timeout=100
+
 [username]
-style_user = "green bold"
+style_user = "red bold"
 style_root = "red bold"
 format = "󰣇 [$user]($style) "
 disabled = false
@@ -18,3 +20,5 @@ truncation_length = 10
 truncate_to_repo = true # truncates directory to root folder if in github repo
 style = "italic cyan"
 #style = "bold italic yellow"
+
+
