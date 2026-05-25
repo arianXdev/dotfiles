@@ -33,12 +33,12 @@ background = "#0d486e"
 # Normal colors
 [colors.normal]
 black = "#011627"
-red = "#EF5350"
-green = "#22da6e"
-yellow = "#c5e478"
-blue = "#82AAFF"
-magenta = "#C792EA"
-cyan = "#21c7a8"
+red = "#eb1040"
+green = "#00ff1e"
+yellow = "#d2de26"
+blue = "#1AE7FF"
+magenta = "#f514cc"
+cyan = "#00dce8"
 white = "#ffffff"
 
 # Bright colors
@@ -49,6 +49,6 @@ green = "#22da6e"
 yellow = "#ffeb95"
 blue = "#82AAFF"
 magenta = "#C792EA"
-cyan = "#7fdbca"
+cyan = "#42fcff"
 white = "#ffffff"
 
